@@ -40,8 +40,6 @@ jobs:
   quality-gate:
     name: 🔍 Code Quality Gate
     runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.quality.outputs.status }}
 
     steps:
       - name: 📥 Checkout code
