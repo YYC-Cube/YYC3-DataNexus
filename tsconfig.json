@@ -41,6 +41,7 @@
     "tests",
     "docs",
     "package-ui",
+    "package-cli",
     "design-system",
     "**/*.test.ts",
     "**/*.test.tsx",

@@ -153,16 +153,16 @@ jobs:
         run: |
           echo "=== 运行完整测试套件 ==="
           npm test -- --coverage --verbose --ci 2>&1 | tee test-output.log
-          
+
           # 提取测试结果
           passed=$(grep -oP '\d+(?= passed)' test-output.log || echo "0")
           failed=$(grep -oP '\d+(?= failed)' test-output.log || echo "0")
           total=$(grep -oP '\d+(?= total)' test-output.log || echo "0")
-          
+
           echo "passed=${passed}" >> $GITHUB_OUTPUT
           echo "failed=${failed}" >> $GITHUB_OUTPUT
           echo "total=${total}" >> $GITHUB_OUTPUT
-          
+
           # 覆盖率检查
           coverage=$(grep -oP '\d+\.\d+(?=%)' coverage-summary.json 2>/dev/null | head -1 || echo "0")
           echo "coverage=${coverage}" >> $GITHUB_OUTPUT
@@ -214,7 +214,7 @@ jobs:
         run: |
           echo "=== 生产环境构建 ==="
           npm run build 2>&1 | tee build-output.log
-          
+
           # 提取构建信息
           if grep -q "Compiled successfully\|Build successful" build-output.log; then
             echo "status=success" >> $GITHUB_OUTPUT
@@ -259,7 +259,7 @@ jobs:
 
       - name: 📦 安装后端依赖
         working-directory: ./backend
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: 🏗️ 构建后端服务
         working-directory: ./backend
@@ -368,18 +368,18 @@ jobs:
         run: |
           max_attempts=15
           attempt=0
-          
+
           while [ $attempt -lt $max_attempts ]; do
             if curl -sf https://api.yyc3.top/api/ping; then
               echo "✅ Staging 部署成功！健康检查通过"
               exit 0
             fi
-            
+
             attempt=$((attempt + 1))
             echo "⏳ 健康检查尝试 $attempt/$max_attempts..."
             sleep 8
           done
-          
+
           echo "❌ Staging 部署失败：健康检查未通过"
           exit 1
 
@@ -418,29 +418,29 @@ jobs:
       - name: 🚀 SSH 部署到生产服务器
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.PRODUCTION_USER }}@${{ secrets.PRODUCTION_HOST }} << 'DEPLOY_EOF'
-            
+
             set -e
-            
+
             echo "=== 开始部署 YYC3 AI Management ==="
             cd /opt/yyc3-management
-            
+
             # 备份当前版本
             if [ -f ".env.production" ]; then
               cp .env.production .env.production.backup.$(date +%Y%m%d_%H%M%S)
             fi
-            
+
             # 拉取最新镜像
             echo "📥 拉取最新 Docker 镜像..."
             docker compose pull
-            
+
             # 滚动更新（零停机）
             echo "🔄 执行滚动更新..."
             docker compose up -d --remove-orphans
-            
+
             # 等待容器启动
             echo "⏳ 等待服务启动..."
             sleep 20
-            
+
             # 健康检查
             echo "🔍 执行健康检查..."
             for i in {1..15}; do
@@ -448,29 +448,29 @@ jobs:
                 echo "✅ 服务健康检查通过"
                 break
               fi
-              
+
               if [ $i -eq 15 ]; then
                 echo "❌ 健康检查失败，回滚..."
                 docker compose rollback
                 exit 1
               fi
-              
+
               sleep 5
             done
-            
+
             # 清理旧镜像
             echo "🧹 清理旧资源..."
             docker image prune -af --filter "until=24h"
-            
+
             echo "=== 部署完成 ==="
-            
+
           DEPLOY_EOF
 
       - name: ✅ 生产环境验证
         run: |
           echo "## ✅ 生产环境部署验证" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           # API 健康检查
           echo "### API 端点检测" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
@@ -481,11 +481,11 @@ jobs:
       - name: 🧪 冒烟测试
         run: |
           echo "执行冒烟测试..."
-          
+
           # 核心功能测试
           curl -sf https://api.yyc3.top/api/ping > /dev/null && echo "✅ Ping API" || exit 1
           curl -sf https://api.yyc3.top > /dev/null && echo "✅ Frontend" || exit 1
-          
+
           echo "✅ 所有冒烟测试通过"
 
       - name: 📢 通知 Slack (Production)
@@ -528,7 +528,7 @@ jobs:
         with:
           script: |
             const previewUrl = '${{ steps.vercel.outputs.preview-url }}';
-            
+
             // 在 PR 中添加评论
             github.rest.issues.createComment({
               issue_number: context.issue.number,
