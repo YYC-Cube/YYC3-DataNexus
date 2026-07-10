@@ -41,7 +41,6 @@ audit-report.json
 next-env.d.ts
 
 # IDEs
-.vscode/settings.json
 .idea/
 *.swp
 *.swo

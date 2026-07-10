@@ -1,8 +1,31 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/coverage": true,
+      "**/dist": true,
+      "**/.turbo": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/coverage": true,
+      "**/dist": true,
+      "**/package-lock.json": true,
+      "**/pnpm-lock.yaml": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/.next/**": true,
+      "**/coverage/**": true,
+      "**/dist/**": true,
+      "**/.git/objects/**": true
+    }
+  }
 }
