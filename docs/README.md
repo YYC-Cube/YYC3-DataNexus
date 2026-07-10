@@ -4,13 +4,13 @@ description: YYC³ API Management 文档中心导航页 · 项目总览/快速�
 author: YanYuCloudCube Team <admin@0379.email>
 version: v3.0.0
 created: 2026-05-01
-updated: 2026-05-03
+updated: 2026-07-10
 status: published
 tags: [文档中心],[导航],[快速开始]
 category: overview
 language: zh-CN
 checksum: readme001a2b3c4d5e
-trace_id: TRC-20260503120
+trace_id: TRC-20260710120
 ---
 
 > ***YanYuCloudCube***
@@ -32,7 +32,7 @@ trace_id: TRC-20260503120
 
 ---
 
-> **最后更新**: 2026-05-03 | **文档版本**: v3.0.0 | **状态**: ✅ 已完成闭环整理
+> **最后更新**: 2026-07-10 | **文档版本**: v4.0.0 | **状态**: ✅ 已完成全量审核与清理
 
 欢迎来到 YYC³ API Management 智能业务管理系统的文档中心。本文档提供项目所有技术文档的导航和快速访问入口，遵循 YYC³ 团队文档闭环标准。
 
@@ -122,14 +122,14 @@ trace_id: TRC-20260503120
 
 ---
 
-## 🗂️ 归档文档
+## 🛠️ 文档工具
 
-历史文档和已完成的任务报告存放在 `archive/` 目录：
+位于 `YYC3-团队通用-标准规范/` 目录的文档工具：
 
-- **实施日志**: `archive/implementation-logs/` - 功能实现详细记录
-- **任务完成报告**: `archive/*-completion-report.md` - 各阶段任务完成情况
-- **审核报告**: `archive/*-audit-report.md` - 安全和代码审核结果
-- **测试报告**: `archive/test-report.md` - 测试执行结果
+| 文件 | 类型 | 用途 |
+|------|------|------|
+| [**YYC3-docs.py**](YYC3-团队通用-标准规范/YYC3-docs.py) | Python脚本 | 文档模版引擎 - 可复用文档生成 |
+| [**template_config.yaml**](YYC3-团队通用-标准规范/template_config.yaml) | YAML配置 | 模版变量与验证规则 |
 
 ---
 
@@ -172,9 +172,18 @@ cat docs/document_registry.json | jq '.documents[] | select(.category == "securi
 - ✅ 实现完整的可追溯性机制
 - ✅ 定期更新和维护
 
-**最后整理日期**: 2026-05-03  
-**整理人**: YanYuCloudCube Team  
-**下次审核**: 2026-06-03
+**最后整理日期**: 2026-07-10
+**整理人**: YanYuCloudCube Team
+**下次审核**: 2026-08-10
+
+**本次审核清理记录**:
+
+- 清除 12 个过期归档文档 (archive/)
+- 清除 7 个重复会话记录 (sessions/, yyc3-world-glm5-turbo-20260503/)
+- 清除 12 个废弃备份文件 (_backup/)
+- 清除 1 个过期 JSON 数据 (system-improvement-plan.json)
+- 重构 document_registry.json (v4.0.0) - 移除全部失效引用
+- 总计删除: 32 个文件 + 4 个空目录
 
 ---
 

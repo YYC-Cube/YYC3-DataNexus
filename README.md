@@ -1,17 +1,17 @@
-> ***YanYuCloudCube***
-> *言启象限 | 语枢未来*
-> ***Words Initiate Quadrants, Language Serves as Core for Future***
-> *万象归元于云枢 | 深栈智启新纪元*
-> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+<p align="center">
+  <img src="./public/Family-001.png" alt="YanYu Cloud³ AI Management Platform" width="100%" />
+</p>
+
+<p align="center">
+  <strong>言启象限 · 语枢未来</strong><br>
+  <em>Words Initiate Quadrants, Language Serves as Core for Future</em><br>
+  <strong>万象归元于云枢 · 深栈智启新纪元</strong><br>
+  <em>All things converge in cloud pivot; Deep stacks ignite a new era of intelligence</em>
+</p>
 
 ---
 
 # 🌟 YanYu Cloud³ AI管理平台
-
-<p align="center">
-  <strong>万象归元于云枢 · 深栈智启新纪元</strong><br>
-  <em>Words Initiate Quadrants, Language Serves as Core for Future</em>
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-16-black" alt="Next.js" />
@@ -21,6 +21,8 @@
   <img src="https://img.shields.io/badge/PostgreSQL-15-4169E1" alt="PostgreSQL" />
   <img src="https://img.shields.io/badge/Redis-ioredis-DC382D" alt="Redis" />
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License" />
+  <img src="https://img.shields.io/badge/CI/CD-GitHub_Actions-2088FF" alt="CI/CD" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED" alt="Docker" />
 </p>
 
 ---
@@ -36,6 +38,7 @@
 - [🧪 测试](#-测试)
 - [🐳 Docker部署](#-docker部署)
 - [📚 文档中心](#-文档中心)
+- [👨‍💻 开发者指南](#-开发者指南)
 - [🤝 贡献指南](#-贡献指南)
 - [📄 许可证](#-许可证)
 
@@ -57,6 +60,7 @@
 ## ✨ 核心特性
 
 ### 🔄 智能工作流引擎
+
 - 可视化流程设计器
 - 多级审批流程
 - 实例管理与监控
@@ -64,6 +68,7 @@
 - 统计分析与报表
 
 ### 🤖 AI智能分析
+
 - OpenAI GPT-4o 集成
 - 工单智能分类与优先级判断
 - 异常检测与趋势预测
@@ -71,6 +76,7 @@
 - 自然语言交互
 
 ### 💰 财务对账系统
+
 - 自动化对账引擎
 - 异常识别与标记
 - AI辅助异常分析
@@ -78,12 +84,14 @@
 - CSV导入导出
 
 ### 📡 实时通信
+
 - WebSocket双向通信
 - 实时通知推送
 - 频道订阅机制
 - 连接状态管理
 
 ### 📊 数据可视化
+
 - 多维度图表展示
 - 实时数据监控
 - KPI指标卡片
@@ -91,12 +99,14 @@
 - 响应式图表适配
 
 ### 🌍 国际化支持
+
 - 多语言切换 (i18n)
 - RTL布局支持
 - 本地化日期/数字格式
 - 动态语言包加载
 
 ### 📱 移动端优化
+
 - 响应式设计
 - 触摸友好交互
 - PWA支持
@@ -104,6 +114,7 @@
 - 手势操作优化
 
 ### 🔐 企业级安全
+
 - JWT身份认证
 - RBAC权限控制
 - 请求速率限制
@@ -221,7 +232,7 @@ cd backend && npm run dev
 npm run dev
 ```
 
-访问 http://localhost:3000 查看应用
+访问 <http://localhost:3000> 查看应用
 
 ### 6. 环境验证
 
@@ -302,11 +313,16 @@ yyc3-AI-Management/
 │   ├── dist/                    # 构建输出
 │   └── package.json             # 包配置
 │
-├── docs/                        # 项目文档
+├── docs/                        # 项目文档 (十阶段架构)
 │   ├── README.md                # 文档导航
-│   ├── ENVIRONMENT_CONFIG.md    # 环境配置详解
-│   ├── TESTING_GUIDE.md         # 测试指南
-│   ├── SECURITY_IMPLEMENTATION.md # 安全实现
+│   ├── 00-YYC3-API-Mana-项目总览索引/  # 总览、导航、快速开始
+│   ├── 02-YYC3-API-Mana-项目设计阶段/  # 架构设计
+│   ├── 03-YYC3-API-Mana-开发实施阶段/  # 环境配置、开发规范
+│   ├── 04-YYC3-API-Mana-测试审核阶段/  # 测试策略
+│   ├── 05-YYC3-API-Mana-交付部署阶段/  # 部署排查
+│   ├── 06-YYC3-API-Mana-运维保障阶段/  # 性能优化、CI/CD
+│   ├── 07-YYC3-API-Mana-合规安全保障/  # 安全、分支管理
+│   ├── document_registry.json   # 文档注册表 (v4.0.0)
 │   └── YYC3-团队通用-标准规范/  # 团队规范文档
 │
 ├── .github/workflows/           # CI/CD配置
@@ -336,6 +352,7 @@ yyc3-AI-Management/
 ### 核心API端点
 
 #### 认证模块 `/api/auth`
+
 | 方法 | 端点 | 描述 |
 |------|------|------|
 | POST | `/auth/register` | 用户注册 |
@@ -344,6 +361,7 @@ yyc3-AI-Management/
 | GET | `/auth/profile` | 获取用户信息 |
 
 #### 工单模块 `/api/tickets`
+
 | 方法 | 端点 | 描述 |
 |------|------|------|
 | GET | `/tickets` | 获取工单列表 |
@@ -353,6 +371,7 @@ yyc3-AI-Management/
 | DELETE | `/tickets/:id` | 删除工单 |
 
 #### 对账模块 `/api/reconciliation`
+
 | 方法 | 端点 | 描述 |
 |------|------|------|
 | GET | `/reconciliation` | 获取对账记录 |
@@ -361,6 +380,7 @@ yyc3-AI-Management/
 | POST | `/reconciliation/:id/analyze` | AI异常分析 |
 
 #### AI分析模块 `/api/ai-analysis`
+
 | 方法 | 端点 | 描述 |
 |------|------|------|
 | POST | `/ai-analysis/analyze` | 执行AI分析 |
@@ -368,6 +388,7 @@ yyc3-AI-Management/
 | GET | `/ai-analysis/trends` | 趋势预测 |
 
 #### 其他端点
+
 | 方法 | 端点 | 描述 |
 |------|------|------|
 | GET | `/health` | 健康检查 |
@@ -475,6 +496,7 @@ docker-compose logs -f app
 3. **Kubernetes**: 使用 ConfigMap 和 Secret
 
 **必须配置的生产变量**:
+
 - `DATABASE_URL`
 - `REDIS_URL`
 - `JWT_SECRET` (强随机密钥)
@@ -499,9 +521,12 @@ curl http://localhost:3001/api/health
 | 文档 | 描述 | 适用场景 |
 |------|------|----------|
 | [**文档导航**](docs/README.md) | 所有文档的索引入口 | 👈 首次访问必读 |
-| [**环境配置**](docs/ENVIRONMENT_CONFIG.md) | 环境变量详解、本地/生产配置 | 🚀 环境搭建 |
-| [**测试指南**](docs/TESTING_GUIDE.md) | 测试策略、运行命令、覆盖率目标 | 🧪 编写测试 |
-| [**安全实现**](docs/SECURITY_IMPLEMENTATION.md) | 认证授权、安全最佳实践 | 🔒 安全审计 |
+| [**环境配置**](docs/03-YYC3-API-Mana-开发实施阶段/0301-开发环境/0301-001-环境配置详解.md) | 环境变量详解、本地/生产配置 | 🚀 环境搭建 |
+| [**测试指南**](docs/04-YYC3-API-Mana-测试审核阶段/0401-测试策略/0401-001-测试指南.md) | 测试策略、运行命令、覆盖率目标 | 🧪 编写测试 |
+| [**安全实现**](docs/07-YYC3-API-Mana-合规安全保障/0702-安全管理/0702-001-安全实现文档.md) | 认证授权、安全最佳实践 | 🔒 安全审计 |
+| [**CI/CD配置**](docs/06-YYC3-API-Mana-运维保障阶段/0601-运维策略/0601-002-CICD工作流配置.md) | GitHub Actions流水线配置 | 🔄 持续集成 |
+| [**性能优化**](docs/06-YYC3-API-Mana-运维保障阶段/0601-运维策略/0601-001-性能优化指南.md) | 数据库优化、缓存策略 | 🚀 性能调优 |
+| [**部署排查**](docs/05-YYC3-API-Mana-交付部署阶段/0507-交付物管理/0507-001-部署故障排查指南.md) | 常见部署问题与解决方案 | ⚠️ 故障排查 |
 
 ### 🔧 技术集成文档
 
@@ -524,6 +549,148 @@ curl http://localhost:3001/api/health
 
 ---
 
+## 👨‍💻 开发者指南
+
+### 架构总览
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    用户浏览器 / 移动端                      │
+│              Next.js SSR + React 19 + Tailwind           │
+├──────────────┬──────────────────┬────────────────────────┤
+│   App Router │  Component Layer │   Design System        │
+│  (app/*)     │  (components/*)  │  (shadcn/ui + Radix)   │
+├──────────────┴──────────────────┴────────────────────────┤
+│              Next.js API Routes (api/*)                   │
+├───────────────────────────────────────────────────────────┤
+│              Express.js Backend (backend/src/*)           │
+│  ┌─────────┐ ┌──────────┐ ┌─────────┐ ┌───────────────┐  │
+│  │ Routes  │→│Middleware│→│Services │→│  Data Layer   │  │
+│  │ (11)    │ │ (12)     │ │ (20+)   │ │               │  │
+│  └─────────┘ └──────────┘ └────┬───┘ └───────────────┘  │
+│                               │                          │
+│              ┌────────────────┼────────────────┐         │
+│              ▼                ▼                ▼         │
+│        ┌──────────┐   ┌────────────┐   ┌──────────┐     │
+│        │PostgreSQL│   │   Redis    │   │  OpenAI  │     │
+│        │   15     │   │  ioredis   │   │  GPT-4o  │     │
+│        └──────────┘   └────────────┘   └──────────┘     │
+├───────────────────────────────────────────────────────────┤
+│           CI/CD: GitHub Actions → Docker → Deploy         │
+└───────────────────────────────────────────────────────────┘
+```
+
+### 常用开发命令
+
+```bash
+# ─── 环境管理 ───
+npm run env:validate          # 验证所有环境变量
+npm run env:test-all          # 测试 DB + Redis + AI 连接
+npm run env:report            # 生成环境配置报告
+
+# ─── 数据库 ───
+npm run migrate               # 运行数据库迁移
+npm run seed                  # 填充种子数据
+
+# ─── 代码质量 ───
+npm run type-check            # TypeScript 类型检查 (零错误)
+npm run lint                  # ESLint 代码规范检查
+npm run quality-gate          # 质量门禁全量检查
+
+# ─── 测试 ───
+npm test                      # 运行所有测试
+npm run test:coverage         # 带覆盖率报告
+npm run test:unit             # 仅单元测试
+npm run test:integration      # 仅集成测试
+npm run test:e2e              # Playwright E2E 测试
+npm run test:performance      # k6 性能测试
+
+# ─── 构建 ───
+npm run dev                   # 开发服务器 (端口 3000)
+npm run build                 # 生产构建
+npm run start                 # 启动生产服务器
+```
+
+### CI/CD 流水线
+
+本项目使用 **GitHub Actions** 实现全链路 CI/CD：
+
+| 工作流 | 文件 | 触发条件 | 说明 |
+|--------|------|----------|------|
+| **CI/CD Pipeline** | [ci-cd.yml](.github/workflows/ci-cd.yml) | push/PR/dispatch | 代码质量→测试→构建→Docker→部署 |
+| **Test Gate** | [test-gate.yml](.github/workflows/test-gate.yml) | push/PR to main/develop | 多版本Node.js矩阵测试 |
+| **Chromatic** | [chromatic.yml](.github/workflows/chromatic.yml) | push/PR | Storybook视觉回归测试 |
+
+**流水线阶段**:
+
+```
+🔍 Quality Gate (TypeScript + ESLint)
+        │
+        ▼
+🧪 Unit Tests (Jest + Coverage)
+        │
+        ▼
+🏗️ Build (Next.js + Backend)
+        │
+        ▼
+🐳 Docker (GHCR push, main/tags only)
+        │
+        ├─→ 🚀 Staging (develop branch → Vercel)
+        └─→ 🚀 Production (main branch → SSH deploy)
+```
+
+### 故障排查
+
+<details>
+<summary><b>🔧 CI/CD: Liquid syntax error (Jekyll)</b></summary>
+
+**症状**: GitHub Pages 部署失败，报 `Liquid syntax error ... Variable '{{ bar: 1 }' was not properly terminated`
+
+**根因**: `node_modules` 中的第三方包文档（如 `@typescript-eslint/eslint-plugin/docs/`）包含 `{{ }}` 语法，被 Jekyll Liquid 引擎误解析为模板变量。
+
+**解决方案** (已实施):
+
+1. 添加 `.nojekyll` 文件禁用 Jekyll 处理
+2. `git rm -r --cached` 清除所有误跟踪的 `node_modules` 目录
+3. 确保 `.gitignore` 中包含 `**/node_modules`
+
+</details>
+
+<details>
+<summary><b>🔧 本地开发: 数据库连接失败</b></summary>
+
+```bash
+# 1. 检查 PostgreSQL 是否运行
+pg_isready -h localhost -p 5434
+
+# 2. 验证环境变量
+npm run env:test-db
+
+# 3. 如需重置
+npm run migrate
+npm run seed
+```
+
+</details>
+
+<details>
+<summary><b>🔧 本地开发: Redis 连接失败</b></summary>
+
+```bash
+# 1. 检查 Redis 是否运行
+redis-cli -h localhost -p 6379 ping
+
+# 2. 验证连接
+npm run env:test-redis
+
+# 3. 清空缓存（开发环境）
+cd backend && node scripts/redis-flush.js
+```
+
+</details>
+
+---
+
 ## 🤝 贡献指南
 
 我们欢迎所有形式的贡献！无论是新功能、Bug修复、文档改进还是问题报告。
@@ -534,15 +701,19 @@ curl http://localhost:3001/api/health
 2. **Clone** 到本地: `git clone https://github.com/<your-username>/yyc3-AI-Management.git`
 3. **创建分支**: `git checkout -b feature/amazing-feature`
 4. **编写代码** 并确保通过所有测试:
+
    ```bash
    npm run type-check
    npm run lint
    npm test
    ```
+
 5. **Commit** 并遵循[提交规范](docs/YYC3-团队通用-标准规范/YYC3-团队规范-开发标准.md):
+
    ```bash
    git commit -m "feat(workflow): add approval flow designer"
    ```
+
 6. **Push** 到你的fork: `git push origin feature/amazing-feature`
 7. **创建Pull Request** 到 `main` 分支
 
@@ -567,6 +738,7 @@ curl http://localhost:3001/api/health
 ```
 
 **类型**:
+
 - `feat`: 新功能
 - `fix`: Bug修复
 - `docs`: 文档更新
@@ -582,13 +754,19 @@ curl http://localhost:3001/api/health
 
 ## 📊 项目状态
 
-### 最近更新 (2026-05-01)
+### 最近更新 (2026-07-10)
 
-### 🎉 代码质量大幅提升
+### 🎉 CI/CD 稳定性修复
+
+- **根因修复**: 清理 23,194 个误提交的 `node_modules` 文件，彻底解决 GitHub Pages Jekyll Liquid 语法错误
+- **Jekyll 禁用**: 添加 `.nojekyll` 文件，防止第三方包中的 `{{ }}` 被 Liquid 模板引擎误解析
+- **仓库瘦身**: 移除 `backend/node_modules`、`package-cli/node_modules`、`package-ui/node_modules` 的 Git 跟踪
+
+### 🎉 代码质量大幅提升 (2026-05-01)
 
 - **TypeScript类型系统增强**: 40+ API接口定义，消除165+ `any` 类型
 - **ESLint错误清零**: 从17个错误降至0
-- **开发体验优化**: 
+- **开发体验优化**:
   - 配置PostgreSQL 15本地开发环境 (端口5434)
   - 修复macOS ARM64兼容性
   - 生成HTML API文档页面
@@ -647,8 +825,8 @@ copies or substantial portions of the Software.
 
 ## 📞 联系我们
 
-- **邮箱**: admin@0379.email
-- **项目地址**: https://github.com/YYC-Cube/yyc3-AI-Management
+- **邮箱**: <admin@0379.email>
+- **项目地址**: <https://github.com/YYC-Cube/yyc3-AI-Management>
 - **文档中心**: [docs/README.md](docs/README.md)
 - **问题反馈**: [GitHub Issues](https://github.com/YYC-Cube/yyc3-AI-Management/issues)
 
