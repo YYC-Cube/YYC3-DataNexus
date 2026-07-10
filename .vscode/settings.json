@@ -20,5 +20,8 @@
 		"**/coverage/**": true,
 		"**/dist/**": true,
 		"**/.git/objects/**": true
-	}
+	},
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.tsserver.experimental.enableProjectDiagnostics": false
 }

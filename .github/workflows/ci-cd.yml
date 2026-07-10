@@ -433,7 +433,7 @@ jobs:
   cleanup:
     name: 🧹 Cleanup & Notify
     runs-on: ubuntu-latest
-    needs: [deploy-production]
+    needs: [quality-gate, test-unit, build-frontend, deploy-production]
     if: always()
 
     steps:
