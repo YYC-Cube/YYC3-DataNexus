@@ -48,19 +48,19 @@ export function DataTable<T extends Record<string, any>>({
 
   // 搜索过滤
   const filteredData = data.filter((row) => {
-    if (!searchTerm) return true
+    if (!searchTerm) {return true}
     return Object.values(row).some((value) => String(value).toLowerCase().includes(searchTerm.toLowerCase()))
   })
 
   // 排序
   const sortedData = [...filteredData].sort((a, b) => {
-    if (!sortConfig) return 0
+    if (!sortConfig) {return 0}
 
     const aValue = a[sortConfig.key]
     const bValue = b[sortConfig.key]
 
-    if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1
-    if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1
+    if (aValue < bValue) {return sortConfig.direction === "asc" ? -1 : 1}
+    if (aValue > bValue) {return sortConfig.direction === "asc" ? 1 : -1}
     return 0
   })
 
@@ -172,7 +172,7 @@ export function DataTable<T extends Record<string, any>>({
             </Button>
             <div className="flex items-center space-x-1">
               {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                let pageNum
+                let pageNum: number
                 if (totalPages <= 5) {
                   pageNum = i + 1
                 } else if (currentPage <= 3) {
