@@ -1,16 +1,16 @@
 ---
 file: 0301-002-GitHub-Secrets配置指南.md
-description: YYC3 CI/CD Secrets完整配置清单 · 生产部署/Vercel/数据库/通知服务/Docker Registry
+description: YYC3 DataNexus CI/CD Secrets完整配置清单 · 生产部署/覆盖率/通知服务/Docker Registry
 author: YanYuCloudCube Team <admin@0379.email>
-version: v3.0.0
+version: v4.0.0
 created: 2026-05-02
-updated: 2026-05-03
+updated: 2026-07-10
 status: published
 tags: [CI/CD],[Secrets配置],[GitHub Actions]
 category: technical
 language: zh-CN
-checksum: sec002b4c5d6e7f8g9
-trace_id: TRC-20260503102
+checksum: sec002v4upd01
+trace_id: TRC-20260710001
 ---
 
 > ***YanYuCloudCube***
@@ -36,216 +36,236 @@ trace_id: TRC-20260503102
 
 ## 📍 配置位置
 
-1. 访问: **https://github.com/YYC-Cube/yyc3_AI_Management/settings/secrets/actions**
+1. 访问仓库: **https://github.com/YYC-Cube/YYC3-DataNexus/settings/secrets/actions**
 2. 点击 **"New repository secret"**
 3. 按照下方列表逐一添加
 
 ---
 
-## 📋 必需 Secrets 清单
+## 📋 Secrets 完整清单
 
-### **1️⃣ 生产环境部署 (Production Deployment)**
+### 优先级总览
 
-| Secret 名称 | 说明 | 获取方式 | 示例值 |
-|-------------|------|----------|--------|
-| `PRODUCTION_SSH_KEY` | SSH 私钥 (用于服务器部署) | 本地生成或从服务器导出 | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
-| `PRODUCTION_USER` | SSH 登录用户名 | 服务器管理员提供 | `root` 或 `deploy` |
-| `PRODUCTION_HOST` | 生产服务器 IP 或域名 | DNS 解析或云服务商控制台 | `123.456.789.012` 或 `api.yyc3.top` |
+| 优先级 | Secret | 用途 | 阻断 CI? |
+|--------|--------|------|----------|
+| **🔴 高** | `PRODUCTION_SSH_KEY` | 生产服务器 SSH 私钥 | 是 |
+| **🔴 高** | `PRODUCTION_HOST` | 生产服务器 IP/域名 | 是 |
+| **🔴 高** | `PRODUCTION_USER` | SSH 登录用户名 | 是 |
+| **🟡 中** | `CODECOV_TOKEN` | 代码覆盖率上报 | 否 (`fail_ci_if_error: false`) |
+| **🟢 低** | `SLACK_WEBHOOK_PRODUCTION` | 生产部署 Slack 通知 | 否 (`continue-on-error: true`) |
+| **🟢 低** | `CHROMATIC_PROJECT_TOKEN` | Storybook 组件可视化测试 | 否 (`continue-on-error: true`) |
 
-### **2️⃣ Vercel 部署 (Staging 预发布)**
+### 自动提供（无需配置）
 
-| Secret 名称 | 说明 | 获取方式 | 示例值 |
-|-------------|------|----------|--------|
-| `VERCEL_TOKEN` | Vercel API Token | [Vercel Dashboard → Settings → Tokens](https://vercel.com/account/tokens) | `xxxxxxxxxxxx` |
-| `VERCEL_ORG_ID` | Vercel 组织 ID | Vercel 项目设置中查看 | `team_xxxxxxxx` |
-| `VERCEL_PROJECT_ID` | Vercel 项目 ID | Vercel 项目 URL 中提取 | `prj_xxxxxxxx` |
-
-### **3️⃣ 数据库连接 (Database)**
-
-| Secret 名称 | 说明 | 示例值 |
-|-------------|------|--------|
-| `STAGING_DATABASE_URL` | Staging 环境数据库连接串 | `postgresql://yyc3_admin:Management@staging-db:5432/yyc3_management_staging` |
-| `PRODUCTION_DATABASE_URL` | 生产环境数据库连接串 | `postgresql://yyc3_admin:Management@prod-db:5432/yyc3_management` |
-
-### **4️⃣ 应用密钥 (Application Keys)**
-
-| Secret 名称 | 说明 | 生成方式 | 示例值 |
-|-------------|------|----------|--------|
-| `JWT_SECRET` | JWT 签名密钥 | `openssl rand -base64 32` | `xK9mP2vL7qR4wN8yT3...` |
-| `REDIS_URL` | Redis 连接地址 | Redis 服务商提供 | `redis://:password@redis:6379/0` |
-| `ENCRYPTION_KEY` | 数据加密密钥 | `openssl rand -hex 32` | `a1b2c3d4e5f6...` |
-
-### **5️⃣ 通知服务 (Notifications)**
-
-| Secret 名称 | 说明 | 获取方式 |
-|-------------|------|----------|
-| `SLACK_WEBHOOK_PRODUCTION` | Production Slack Webhook | [Slack App → Incoming Webhooks](https://api.slack.com/apps) |
-| `SLACK_WEBHOOK_STAGING` | Staging Slack Webhook | 同上 (不同频道) |
-
-### **6️⃣ Docker Registry (可选)**
-
-| Secret 名称 | 说明 | 获取方式 |
-|-------------|------|----------|
-| `DOCKER_USERNAME` | Docker Hub/GHCR 用户名 | Docker Hub 或 GitHub 用户名 |
-| `DOCKER_PASSWORD` | Docker Hub/GHCR 密码/Token | Docker Hub Access Token 或 GitHub PAT |
+| Secret | 说明 |
+|--------|------|
+| `GITHUB_TOKEN` | GitHub 自动注入，用于 GHCR 镜像推送认证 |
 
 ---
 
-## 🛠️ 详细配置步骤
+## 🛠️ 各 Secret 详细配置步骤
 
-### **步骤 1: 生成 SSH 密钥对 (用于生产部署)**
+### 🔴 1. PRODUCTION_SSH_KEY — SSH 部署私钥
+
+**用途**：CI/CD 通过 SSH 连接到生产服务器执行部署
 
 ```bash
-# 在本地机器执行
-ssh-keygen -t ed25519 -C "github-actions-deploy" -f ~/.ssh/yyc3_deploy_key
+# 1. 生成专用部署密钥（不要复用个人密钥）
+ssh-keygen -t ed25519 -C "yyc3-deploy" -f ~/.ssh/yyc3_deploy
 
-# 查看公钥 (需要添加到生产服务器的 authorized_keys)
-cat ~/.ssh/yyc3_deploy_key.pub
+# 2. 将公钥添加到生产服务器
+ssh-copy-id -i ~/.ssh/yyc3_deploy.pub root@你的服务器IP
 
-# 查看私钥 (需要添加到 GitHub Secrets)
-cat ~/.ssh/yyc3_deploy_key
+# 3. 查看私钥内容（完整复制到 GitHub Secret）
+cat ~/.ssh/yyc3_deploy
 ```
 
-**将公钥添加到生产服务器**:
-```bash
-# 复制公钥内容到服务器
-ssh user@production-server "echo 'YOUR_PUBLIC_KEY' >> ~/.ssh/authorized_keys"
-```
-
-**将私钥添加到 GitHub Secrets**:
+**GitHub 配置**：
 - Name: `PRODUCTION_SSH_KEY`
-- Value: 完整的私钥内容 (包括 -----BEGIN 和 -----END 行)
-
----
-
-### **步骤 2: 获取 Vercel Token**
-
-1. 登录 [Vercel Dashboard](https://vercel.com/dashboard)
-2. 点击右上角头像 → **Settings**
-3. 左侧菜单选择 **Tokens**
-4. 点击 **Create Token**
-5. 输入名称: `GitHub Actions CI/CD`
-6. 选择 Scope: **Full Account**
-7. 复制生成的 Token
-
-**添加到 GitHub Secrets**:
-- Name: `VERCEL_TOKEN`
-- Value: 复制的 Token 值
-
----
-
-### **步骤 3: 配置数据库 Secrets**
-
-根据你的部署环境，准备数据库连接字符串：
-
-```bash
-# PostgreSQL 连接串格式
-postgresql://[user]:[password]@[host]:[port]/[database]
-
-# 示例:
-# Staging: postgresql://yyc3_admin:Management@staging-postgres:5432/yyc3_management_staging
-# Production: postgresql://yyc3_admin:Management@prod-postgres:5432/yyc3_management
+- Value: 完整私钥内容，必须包含首尾行：
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmU...
+...（中间所有行）...
+-----END OPENSSH PRIVATE KEY-----
 ```
 
 ---
 
-### **步骤 4: 生成应用密钥**
+### 🔴 2. PRODUCTION_HOST — 生产服务器地址
 
-```bash
-# JWT Secret (至少 32 字符)
-openssl rand -base64 32
+**用途**：SSH 连接目标地址
 
-# Encryption Key (64 位十六进制)
-openssl rand -hex 32
-```
+**GitHub 配置**：
+- Name: `PRODUCTION_HOST`
+- Value: 服务器 IP 或域名
+- 示例: `123.45.67.89` 或 `api.yyc3.top`
 
 ---
 
-### **步骤 5: 配置 Slack 通知 (可选)**
+### 🔴 3. PRODUCTION_USER — SSH 登录用户
 
-1. 创建 [Slack App](https://api.slack.com/apps)
-2. 启用 **Incoming Webhooks**
-3. 创建新的 Webhook URL
-4. 选择目标频道 (#deployments 或 #notifications)
+**用途**：SSH 登录用户名
+
+**GitHub 配置**：
+- Name: `PRODUCTION_USER`
+- Value: 用户名
+- 示例: `root` 或 `deploy`
+
+---
+
+### 🟡 4. CODECOV_TOKEN — 代码覆盖率上报
+
+**用途**：将测试覆盖率数据上报到 [Codecov](https://codecov.io)，可视化追踪覆盖率趋势
+
+**获取方式**：
+```
+1. 访问 https://app.codecov.io
+2. 使用 GitHub 账号登录
+3. 添加 YYC-Cube/YYC3-DataNexus 仓库
+4. 复制 Upload Token（格式：a1b2c3d4e5f6...）
+```
+
+**GitHub 配置**：
+- Name: `CODECOV_TOKEN`
+- Value: Codecov Upload Token
+
+> **注意**：此 Secret 缺失不会阻断 CI（已配置 `fail_ci_if_error: false`）
+
+---
+
+### 🟢 5. SLACK_WEBHOOK_PRODUCTION — Slack 部署通知
+
+**用途**：生产环境部署完成后发送 Slack 通知
+
+**获取方式**：
+```
+1. 访问 https://api.slack.com/messaging/webhooks
+2. 点击 "Create your Slack app"
+3. 选择工作区 → 创建 Incoming Webhook
+4. 选择通知频道（如 #ci-cd 或 #deployments）
 5. 复制 Webhook URL
+```
 
-**添加到 GitHub Secrets**:
+**GitHub 配置**：
 - Name: `SLACK_WEBHOOK_PRODUCTION`
-- Value: `https://hooks.slack.com/services/T00XXXXXXX/B00XXXXXXXX/XXXXXXXXXXXXXXXXXXXX`
+- Value: `https://hooks.slack.com/services/T000.../B000.../...`
+
+> **注意**：此 Secret 缺失不会阻断 CI（已配置 `continue-on-error: true`）
+
+---
+
+### 🟢 6. CHROMATIC_PROJECT_TOKEN — Storybook 组件测试
+
+**用途**：将 Storybook 组件推送到 [Chromatic](https://www.chromatic.com) 进行可视化回归测试
+
+**获取方式**：
+```
+1. 访问 https://www.chromatic.com
+2. 使用 GitHub 登录
+3. 选择 YYC-Cube/YYC3-DataNexus 仓库
+4. 项目设置 → 复制 Project Token（格式：1a2b3c...）
+```
+
+**GitHub 配置**：
+- Name: `CHROMATIC_PROJECT_TOKEN`
+- Value: Chromatic Project Token
+
+> **注意**：此 Secret 缺失不会阻断 CI（已配置 `continue-on-error: true`）
 
 ---
 
 ## ✅ 配置验证清单
 
-在运行 CI/CD Pipeline 前，请确认：
+配置完成后，请逐项确认：
 
-- [ ] `PRODUCTION_SSH_KEY` 已配置 ✓
-- [ ] `PRODUCTION_USER` 已配置 ✓
-- [ ] `PRODUCTION_HOST` 已配置 ✓
-- [ ] `VERCEL_TOKEN` 已配置 (如使用 Vercel) ✓
-- [ ] `JWT_SECRET` 已配置 ✓
-- [ ] `STAGING_DATABASE_URL` 已配置 ✓
-- [ ] `SLACK_WEBHOOK_*` 已配置 (可选) ✓
+- [ ] `PRODUCTION_SSH_KEY` 已配置（含完整 BEGIN/END 行）
+- [ ] `PRODUCTION_HOST` 已配置（正确的 IP 或域名）
+- [ ] `PRODUCTION_USER` 已配置（正确的用户名）
+- [ ] `CODECOV_TOKEN` 已配置（可选，不影响 CI）
+- [ ] `SLACK_WEBHOOK_PRODUCTION` 已配置（可选）
+- [ ] `CHROMATIC_PROJECT_TOKEN` 已配置（可选）
+
+---
+
+## 🌐 GitHub Pages 部署信息
+
+| 配置项 | 值 |
+|--------|-----|
+| **Pages 域名** | `data-nexus.yyc3.top` |
+| **CNAME 文件** | 仓库根目录 `CNAME` |
+| **`.nojekyll`** | 仓库根目录（禁用 Jekyll Liquid 处理） |
+| **部署方式** | Deploy from branch (`main`) |
+| **DNS 配置** | CNAME 记录指向 `YYC-Cube.github.io` |
+
+> Pages 域名无需额外 Secret 配置，只需仓库根目录存在 `CNAME` 文件即可。
 
 ---
 
 ## 🚀 首次运行 CI/CD
 
-### **方式 1: 自动触发 (推荐)**
+### 自动触发（推荐）
 
-推送代码到 main 分支后，CI/CD 将自动运行：
 ```bash
 git push origin main
-# 访问: https://github.com/YYC-Cube/yyc3_AI_Management/actions
+# 查看: https://github.com/YYC-Cube/YYC3-DataNexus/actions
 ```
 
-### **方式 2: 手动触发**
+### 手动触发
 
-1. 访问: **https://github.com/YYC-Cube/yyc3_AI_Management/actions**
-2. 左侧选择 **"YYC3 CI/CD Pipeline"**
+1. 访问: **https://github.com/YYC-Cube/YYC3-DataNexus/actions**
+2. 选择 **"YYC3 CI/CD Pipeline"**
 3. 点击 **"Run workflow"**
 4. 选择分支: `main`
-5. Environment: `staging` (测试) 或 `production` (正式)
-6. 勾选 Skip Tests: ❌ (不勾选)
-7. 点击 **"Run workflow"**
+5. 点击 **"Run workflow"**
 
 ---
 
 ## ⚠️ 常见问题排查
 
-### **Q1: PRODUCTION_SSH_KEY 格式错误**
+### Q1: PRODUCTION_SSH_KEY 格式错误
+
 ```
 Error: Invalid SSH key format
 ```
-**解决**: 确保密钥包含完整的头部和尾部：
+
+**解决**：确保密钥包含完整的头部和尾部，且每行无多余空格：
 ```
 -----BEGIN OPENSSH PRIVATE KEY-----
-base64_encoded_content_here...
+（Base64 编码内容，多行）
 -----END OPENSSH PRIVATE KEY-----
 ```
 
-### **Q2: VERCEL_TOKEN 无效**
-```
-Error: Invalid or expired token
-```
-**解决**: 
-- 重新生成 Vercel Token
-- 确认 Token 权限为 "Full Account"
+### Q2: SSH 连接超时
 
-### **Q3: 数据库连接失败**
-``Error: Could not connect to database``
-**解决**: 
-- 检查 DATABASE_URL 格式是否正确
-- 确认数据库服务器允许来自 GitHub Actions IP 的连接
-- 检查防火墙规则
-
-### **Q4: Slack 通知未发送**
 ```
-Slack webhook returned 403``
-**解决**: 
-- 确认 Webhook URL 正确
-- 检查 Slack App 是否已安装到工作区
-- 确认频道权限
+Error: ssh: connect to host xxx port 22: Connection timed out
+```
+
+**解决**：
+- 确认 `PRODUCTION_HOST` IP 正确
+- 确认服务器 22 端口已开放
+- 确认服务器防火墙允许 GitHub Actions IP 段
+
+### Q3: Codecov 上传失败
+
+```
+Error: Bad token or unknown upload token
+```
+
+**解决**：不会阻断 CI。重新从 Codecov 获取正确的 Upload Token。
+
+### Q4: Slack 通知未发送
+
+```
+Error: Slack webhook returned 403
+```
+
+**解决**：不会阻断 CI。确认 Webhook URL 有效且 Slack App 已安装到工作区。
+
+### Q5: IDE 显示 "Context access might be invalid"
+
+**解决**：这是 IDE 对未配置 Secret 的预警。在 GitHub Settings 中配置对应 Secret 后，警告自动消失。
 
 ---
 
@@ -263,8 +283,8 @@ Slack webhook returned 403``
 | 文档 | 说明 |
 |------|------|
 | [0301-001-环境配置详解](./0301-001-环境配置详解.md) | 环境变量配置 |
-| [0601-002-CICD工作流配置](../../06-YYC3-API-Mana-运维保障阶段/0601-运维策略/0601-002-CICD工作流配置.md) | CI/CD工作流说明 |
-| [003-快速开始指南](../../00-YYC3-API-Mana-项目总览索引/003-API-Mana-项目总览索引-快速开始指南.md) | 5分钟上手 |
+| [0601-002-CICD工作流配置](../../06-YYC3-API-Mana-运维保障阶段/0601-运维策略/0601-002-CICD工作流配置.md) | CI/CD 工作流说明 |
+| [003-快速开始指南](../../00-YYC3-API-Mana-项目总览索引/003-API-Mana-项目总览索引-快速开始指南.md) | 5 分钟上手 |
 
 ---
 
@@ -277,6 +297,6 @@ Slack webhook returned 403``
 
 **© 2025-2026 YYC³ Team. All Rights Reserved.**
 
-*文档生成时间: 2026-05-03T18:12:00Z | 模板版本: v3.0.0 | 引擎: YYC3TemplateEngine*
+*文档生成时间: 2026-07-10T00:00:00Z | 模板版本: v4.0.0 | 引擎: YYC3TemplateEngine*
 
 </div>
