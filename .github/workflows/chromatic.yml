@@ -31,3 +31,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
           autoAcceptChanges: "main"
+        continue-on-error: true

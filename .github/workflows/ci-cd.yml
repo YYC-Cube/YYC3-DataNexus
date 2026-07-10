@@ -5,28 +5,28 @@ name: YYC3 CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop, 'feature/*']
-    tags: ['v*']
+    branches: [main, develop, "feature/*"]
+    tags: ["v*"]
   pull_request:
     branches: [main, develop]
   workflow_dispatch:
     inputs:
       environment:
-        description: '部署环境'
+        description: "部署环境"
         required: true
-        default: 'staging'
+        default: "staging"
         type: choice
         options:
           - staging
           - production
       skip_tests:
-        description: '跳过测试（不推荐）'
+        description: "跳过测试（不推荐）"
         required: false
         default: false
         type: boolean
 
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: "20.x"
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   DEPLOY_TARGET: api.yyc3.top
@@ -51,7 +51,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: npm ci --legacy-peer-deps
@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: quality-gate
     if: github.event.inputs.skip_tests != 'true'
-    continue-on-error: true  # 首次部署允许测试失败，后续可移除
+    continue-on-error: true # 首次部署允许测试失败，后续可移除
 
     services:
       postgres:
@@ -143,7 +143,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: npm ci --legacy-peer-deps
@@ -204,7 +204,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: 📦 Install dependencies
         run: npm ci --legacy-peer-deps
@@ -244,7 +244,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: quality-gate
     if: success()
-    continue-on-error: true  # 首次部署允许后端构建失败，后续可移除
+    continue-on-error: true # 首次部署允许后端构建失败，后续可移除
 
     steps:
       - name: 📥 Checkout code
@@ -254,7 +254,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: backend/package-lock.json
 
       - name: 📦 安装后端依赖
@@ -323,77 +323,6 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             NODE_VERSION=${{ env.NODE_VERSION }}
-
-  # ==================== 部署到 Staging ====================
-  deploy-staging:
-    name: 🚀 Deploy to Staging (api.yyc3.top)
-    runs-on: ubuntu-latest
-    needs: [build-frontend]
-    if: github.ref == 'refs/heads/develop' || github.event.inputs.environment == 'staging'
-    # 注意：取消下面的 environment 注释需要在 GitHub Settings > Environments 中先创建 'staging' 环境
-    # environment:
-    #   name: staging
-    #   url: https://api.yyc3.top
-
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 📥 下载构建产物
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-build-${{ github.sha }}
-          path: .next/
-
-      - name: 🔧 配置环境变量
-        run: |
-          cat > .env.production << EOF
-          NEXT_PUBLIC_API_BASE_URL=https://api.yyc3.top
-          NEXT_PUBLIC_ENV=staging
-          DATABASE_URL=${{ secrets.STAGING_DATABASE_URL }}
-          REDIS_URL=${{ secrets.STAGING_REDIS_URL }}
-          JWT_SECRET=${{ secrets.STAGING_JWT_SECRET }}
-          EOF
-
-      - name: 🚀 部署到 Vercel (Staging)
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
-          scope: ${{ secrets.VERCEL_SCOPE }}
-
-      - name: ✅ 健康检查
-        run: |
-          max_attempts=15
-          attempt=0
-
-          while [ $attempt -lt $max_attempts ]; do
-            if curl -sf https://api.yyc3.top/api/ping; then
-              echo "✅ Staging 部署成功！健康检查通过"
-              exit 0
-            fi
-
-            attempt=$((attempt + 1))
-            echo "⏳ 健康检查尝试 $attempt/$max_attempts..."
-            sleep 8
-          done
-
-          echo "❌ Staging 部署失败：健康检查未通过"
-          exit 1
-
-      - name: 📢 通知 Slack (Staging)
-        if: always()
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          payload: |
-            {
-              "text": "*🚀 Staging Deployment*\n*Status*: ${{ job.status }}\n*Commit*: ${{ github.sha }}\n*Author*: ${{ github.actor }}\n*Branch*: ${{ github.ref_name }}\n*URL*: https://api.yyc3.top"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_STAGING }}
-        continue-on-error: true
 
   # ==================== 部署到 Production ====================
   deploy-production:
@@ -500,48 +429,11 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_PRODUCTION }}
         continue-on-error: true
 
-  # ==================== PR Preview ====================
-  preview-deploy:
-    name: 👀 Deploy Preview (Vercel)
-    runs-on: ubuntu-latest
-    needs: [build-frontend]
-    if: github.event_name == 'pull_request'
-    permissions:
-      checks: write
-      pull-requests: write
-
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 🚀 部署 Vercel Preview
-        id: vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          scope: ${{ secrets.VERCEL_SCOPE }}
-
-      - name: 💬 评论 PR Preview URL
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const previewUrl = '${{ steps.vercel.outputs.preview-url }}';
-
-            // 在 PR 中添加评论
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `## 🚀 Preview Deployment Ready!\n\n**Preview URL**: ${previewUrl}\n\n---\n*Deployed from commit: \`${{ github.sha }}`\n*Triggered by: @${{ github.actor }}*`
-            });
-
   # ==================== 清理与通知 ====================
   cleanup:
     name: 🧹 Cleanup & Notify
     runs-on: ubuntu-latest
-    needs: [deploy-staging, deploy-production]
+    needs: [deploy-production]
     if: always()
 
     steps:
@@ -557,5 +449,4 @@ jobs:
           echo "| Quality Gate | ${{ needs.quality-gate.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Unit Tests | ${{ needs.test-unit.result == 'success' && '✅ Passed' || needs.test-unit.result == 'skipped' && '⏭️ Skipped' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Build | ${{ needs.build-frontend.result == 'success' && '✅ Success' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Deploy (Staging) | ${{ needs.deploy-staging.result == 'success' && '✅ Deployed' || needs.deploy-staging.result == 'skipped' && '⏭️ Skipped' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Deploy (Production) | ${{ needs.deploy-production.result == 'success' && '✅ Deployed' || needs.deploy-production.result == 'skipped' && '⏭️ Skipped' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
