@@ -12,8 +12,10 @@ import { useResponsive } from "@/hooks/use-responsive"
 import { cn } from "@/lib/utils"
 import { Activity, ArrowUpRight, BarChart3, Bell, ChevronRight, Cpu, DollarSign, FileText, Globe, Home as HomeIcon, LayoutDashboard, Search, Settings, Shield, Sparkles, Star, Ticket, TrendingUp, Users, Zap } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 export default function HomePage() {
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState("dashboard")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const responsive = useResponsive()
@@ -30,42 +32,42 @@ export default function HomePage() {
   const navigationItems = [
     {
       id: "dashboard",
-      label: "仪表盘",
+      label: t("page.nav.dashboard"),
       icon: LayoutDashboard,
-      description: "数据概览与洞察",
+      description: t("page.nav.dashboardDesc"),
       color: "from-blue-500 to-cyan-500",
       component: <MainDashboard />,
     },
     {
       id: "tickets",
-      label: "客服工单",
+      label: t("page.nav.tickets"),
       icon: Ticket,
-      description: "工单管理与追踪",
+      description: t("page.nav.ticketsDesc"),
       color: "from-purple-500 to-pink-500",
       component: <TicketSystem />,
     },
     {
       id: "contracts",
-      label: "合同审批",
+      label: t("page.nav.contracts"),
       icon: FileText,
-      description: "流程审批中心",
+      description: t("page.nav.contractsDesc"),
       color: "from-orange-500 to-red-500",
       component: <ContractApproval />,
     },
     {
       id: "reconciliation",
-      label: "财务对账",
+      label: t("page.nav.reconciliation"),
       icon: DollarSign,
-      description: "账务核对分析",
+      description: t("page.nav.reconciliationDesc"),
       color: "from-green-500 to-emerald-500",
       component: <FinancialReconciliation />,
     },
   ]
 
   const secondaryItems = [
-    { id: "analytics", label: "数据分析", icon: BarChart3, badge: "NEW" },
-    { id: "users", label: "用户管理", icon: Users },
-    { id: "settings", label: "系统设置", icon: Settings },
+    { id: "analytics", label: t("page.nav.analytics"), icon: BarChart3, badge: "NEW" },
+    { id: "users", label: t("page.nav.users"), icon: Users },
+    { id: "settings", label: t("page.nav.settings"), icon: Settings },
   ]
 
   return (
@@ -138,7 +140,7 @@ export default function HomePage() {
             <div className="relative mb-4">
               <button className="w-full flex items-center px-4 py-2.5 bg-white/50 hover:bg-white/70 border border-slate-200/50 rounded-xl transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-blue-500/50">
                 <Search className="w-4 h-4 text-slate-400 mr-3 group-hover:text-blue-500 transition-colors" />
-                <span className="text-sm text-slate-400 group-hover:text-slate-600 transition-colors">搜索功能、页面、设置...</span>
+                <span className="text-sm text-slate-400 group-hover:text-slate-600 transition-colors">{t("page.search")}</span>
                 <kbd className="ml-auto px-2 py-0.5 text-xs font-mono bg-slate-100 text-slate-500 rounded-md border border-slate-200 hidden lg:inline-block">⌘K</kbd>
               </button>
             </div>
@@ -166,7 +168,7 @@ export default function HomePage() {
                 <span className={cn(
                   "font-bold text-green-800 dark:text-green-300 tracking-wide",
                   responsive.isTablet ? "text-[10px]" : "text-xs"
-                )}>系统正常</span>
+                )}>{t("page.systemOk")}</span>
               </div>
 
               <div className={cn(
@@ -194,7 +196,7 @@ export default function HomePage() {
             <p className={cn(
               "font-black text-slate-400 uppercase",
               responsive.isTablet ? "text-[10px] tracking-wider" : "text-xs tracking-widest"
-            )}>主要功能</p>
+            )}>{t("page.mainNav")}</p>
             <ThemeToggle />
           </div>
 
@@ -288,7 +290,7 @@ export default function HomePage() {
             <p className={cn(
               "font-black text-slate-400 uppercase",
               responsive.isTablet ? "text-[10px] tracking-wider" : "text-xs tracking-widest"
-            )}>系统工具</p>
+            )}>{t("page.systemTools")}</p>
             <div className="flex items-center space-x-1">
               <Globe className={cn("text-green-500", responsive.isTablet ? "w-2.5 h-2.5" : "w-3 h-3")} />
               <Cpu className={cn("text-blue-500", responsive.isTablet ? "w-2.5 h-2.5" : "w-3 h-3")} />
@@ -347,31 +349,34 @@ export default function HomePage() {
               <span className={cn(
                 "font-black bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full shadow-md uppercase tracking-wider",
                 responsive.isTablet ? "px-1.5 py-0.5 text-[8px]" : "px-2 py-0.5 text-[10px]"
-              )}>Stable</span>
+              )}>{t("page.stable")}</span>
             </div>
             {!responsive.isTablet && (
-              <div className="text-[10px] text-slate-500 font-medium">© 2024 YanYu Cloud³ Team</div>
+              <div className="text-[10px] text-slate-500 font-medium">{t("page.copyright")}</div>
             )}
           </div>
         </div>
-      </aside>
+      </aside >
 
       {/* ==================== 移动端侧边栏 (<md) ==================== */}
-      <MobileSidebar
+      < MobileSidebar
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={() => setIsMobileMenuOpen(false)
+        }
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
 
       {/* ==================== 主内容区 ==================== */}
-      <main className="relative flex-1 overflow-hidden min-w-0">
+      < main className="relative flex-1 overflow-hidden min-w-0" >
         {/* 顶部导航栏 */}
-        <header className={cn(
-          "absolute top-0 left-0 right-0 glass-enhanced border-b border-white/20 z-20 flex items-center",
-          responsive.isMobile ? "h-14 px-4" : "h-16 px-8",
-          responsive.isTablet && "h-15 px-6"
-        )}>
+        < header className={
+          cn(
+            "absolute top-0 left-0 right-0 glass-enhanced border-b border-white/20 z-20 flex items-center",
+            responsive.isMobile ? "h-14 px-4" : "h-16 px-8",
+            responsive.isTablet && "h-15 px-6"
+          )
+        } >
           <div className="flex items-center flex-1 min-w-0">
             {/* 移动端菜单按钮 */}
             <MobileMenuButton onClick={() => setIsMobileMenuOpen(true)} />
@@ -398,7 +403,7 @@ export default function HomePage() {
                 "ml-4 px-3 py-1 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 font-bold rounded-full border border-blue-200 dark:border-blue-800 flex-shrink-0",
                 responsive.isTablet ? "text-[10px]" : "text-xs"
               )}>
-                实时同步
+                {t("page.realtimeSync")}
               </div>
             )}
           </div>
@@ -436,10 +441,10 @@ export default function HomePage() {
               )}>A</span>
             </div>
           </div>
-        </header>
+        </header >
 
         {/* 内容容器 */}
-        <div className="relative h-full pt-[3.5rem] md:pt-16 lg:pt-16 overflow-auto">
+        < div className="relative h-full pt-[3.5rem] md:pt-16 lg:pt-16 overflow-auto" >
           <div className={cn(
             "transition-all duration-700",
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
@@ -449,11 +454,11 @@ export default function HomePage() {
               {navigationItems.find((item) => item.id === activeTab)?.component}
             </div>
           </div>
-        </div>
-      </main>
+        </div >
+      </main >
 
       {/* AI 浮窗助手 */}
-      <AIFloatingWidget />
-    </div>
+      < AIFloatingWidget />
+    </div >
   )
 }

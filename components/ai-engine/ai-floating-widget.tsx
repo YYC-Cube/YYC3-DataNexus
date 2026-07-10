@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { Bot, X, Send, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
+import { Bot, Send, Sparkles, X } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSound } from "../design-system/sound-system"
 
 interface Message {
@@ -13,30 +14,31 @@ interface Message {
   content: string
 }
 
-const QUICK_ACTIONS = [
-  "分析今日数据",
-  "生成工作报告",
-  "系统状态检查",
-]
-
 export function AIFloatingWidget() {
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "你好！我是 YYC3 AI 助手，有什么可以帮助你的？",
+      content: t("ai.welcome"),
     },
   ])
   const [input, setInput] = useState("")
   const scrollRef = useRef<HTMLDivElement>(null)
   const { playSound } = useSound()
 
+  const quickActions = [
+    t("ai.quickAnalyze"),
+    t("ai.quickReport"),
+    t("ai.quickStatus"),
+  ]
+
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
   const handleSend = () => {
-    if (!input.trim()) return
+    if (!input.trim()) { return }
 
     playSound("click")
     const userMsg: Message = { role: "user", content: input }
@@ -101,10 +103,10 @@ export function AIFloatingWidget() {
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-sm text-slate-800 dark:text-slate-200">AI 智能助手</h3>
+                <h3 className="font-bold text-sm text-slate-800 dark:text-slate-200">{t("ai.title")}</h3>
                 <p className="text-xs text-green-500 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                  在线
+                  {t("ai.online")}
                 </p>
               </div>
             </div>
@@ -149,7 +151,7 @@ export function AIFloatingWidget() {
           {/* 快捷操作 */}
           {messages.length <= 2 && (
             <div className="flex flex-wrap gap-2 px-4 pb-2">
-              {QUICK_ACTIONS.map(action => (
+              {quickActions.map(action => (
                 <button
                   key={action}
                   onClick={() => {
@@ -169,7 +171,7 @@ export function AIFloatingWidget() {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && handleSend()}
-              placeholder="输入消息..."
+              placeholder={t("ai.placeholder")}
               className="flex-1"
             />
             <Button

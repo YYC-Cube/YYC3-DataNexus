@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "YanYu Cloud³",
+    "tagline": "Système de Gestion d'Entreprise Intelligent",
+    "description": "Plateforme de gestion professionnelle pour la transformation numérique"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "tickets": "Gestion des Tickets",
+    "settings": "Paramètres",
+    "users": "Gestion des Utilisateurs",
+    "analytics": "Analyse de Données"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "success": "Succès",
+    "error": "Erreur"
+  },
+  "page": {
+    "search": "Rechercher des fonctions, pages, paramètres...",
+    "systemOk": "Système OK",
+    "mainNav": "Fonctions Principales",
+    "systemTools": "Outils Système",
+    "realtimeSync": "Synchro en Temps Réel",
+    "version": "v2.0.0",
+    "stable": "Stable",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "dashboardDesc": "Aperçu des données",
+      "tickets": "Tickets de Support",
+      "ticketsDesc": "Gestion et suivi des tickets",
+      "contracts": "Approbation de Contrats",
+      "contractsDesc": "Centre d'approbation",
+      "reconciliation": "Rapprochement Financier",
+      "reconciliationDesc": "Analyse de vérification des comptes",
+      "analytics": "Analyse de Données",
+      "users": "Gestion des Utilisateurs",
+      "settings": "Paramètres Système"
+    }
+  },
+  "ai": {
+    "title": "Assistant IA",
+    "online": "En ligne",
+    "placeholder": "Tapez un message...",
+    "welcome": "Bonjour ! Je suis l'Assistant IA YYC3. Comment puis-je vous aider ?",
+    "quickAnalyze": "Analyser les données du jour",
+    "quickReport": "Générer un rapport",
+    "quickStatus": "Vérification du système"
+  }
+}

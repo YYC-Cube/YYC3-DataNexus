@@ -197,5 +197,37 @@
     "weeksAgo": "{{count}} weeks ago",
     "monthsAgo": "{{count}} months ago",
     "yearsAgo": "{{count}} years ago"
+  },
+  "page": {
+    "search": "Search features, pages, settings...",
+    "systemOk": "System OK",
+    "mainNav": "Main Features",
+    "systemTools": "System Tools",
+    "realtimeSync": "Realtime Sync",
+    "version": "v2.0.0",
+    "stable": "Stable",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "Dashboard",
+      "dashboardDesc": "Data overview & insights",
+      "tickets": "Support Tickets",
+      "ticketsDesc": "Ticket management & tracking",
+      "contracts": "Contract Approval",
+      "contractsDesc": "Approval workflow center",
+      "reconciliation": "Financial Reconciliation",
+      "reconciliationDesc": "Account verification analysis",
+      "analytics": "Data Analytics",
+      "users": "User Management",
+      "settings": "System Settings"
+    }
+  },
+  "ai": {
+    "title": "AI Assistant",
+    "online": "Online",
+    "placeholder": "Type a message...",
+    "welcome": "Hello! I'm YYC3 AI Assistant. How can I help you?",
+    "quickAnalyze": "Analyze today's data",
+    "quickReport": "Generate report",
+    "quickStatus": "System status check"
   }
 }

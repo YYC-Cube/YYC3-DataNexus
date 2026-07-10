@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "YanYu Cloud³",
+    "tagline": "Intelligentes Business-Management-System",
+    "description": "Professionelle Enterprise-Management-Plattform für digitale Transformation"
+  },
+  "nav": {
+    "dashboard": "Übersicht",
+    "tickets": "Ticket-Verwaltung",
+    "settings": "Einstellungen",
+    "users": "Benutzerverwaltung",
+    "analytics": "Datenanalyse"
+  },
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "search": "Suchen",
+    "loading": "Laden...",
+    "success": "Erfolg",
+    "error": "Fehler"
+  },
+  "page": {
+    "search": "Funktionen, Seiten, Einstellungen suchen...",
+    "systemOk": "System OK",
+    "mainNav": "Hauptfunktionen",
+    "systemTools": "Systemwerkzeuge",
+    "realtimeSync": "Echtzeit-Sync",
+    "version": "v2.0.0",
+    "stable": "Stabil",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "Übersicht",
+      "dashboardDesc": "Datenüberblick und Einblicke",
+      "tickets": "Support-Tickets",
+      "ticketsDesc": "Ticket-Verwaltung und -Verfolgung",
+      "contracts": "Vertragsfreigabe",
+      "contractsDesc": "Freigabe-Workflow-Center",
+      "reconciliation": "Finanzabstimmung",
+      "reconciliationDesc": "Kontoverifikationsanalyse",
+      "analytics": "Datenanalyse",
+      "users": "Benutzerverwaltung",
+      "settings": "Systemeinstellungen"
+    }
+  },
+  "ai": {
+    "title": "KI-Assistent",
+    "online": "Online",
+    "placeholder": "Nachricht eingeben...",
+    "welcome": "Hallo! Ich bin der YYC3 KI-Assistent. Wie kann ich helfen?",
+    "quickAnalyze": "Heutige Daten analysieren",
+    "quickReport": "Bericht erstellen",
+    "quickStatus": "Systemstatus prüfen"
+  }
+}

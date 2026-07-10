@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "YanYu Cloud³",
+    "tagline": "智能商務管理系統",
+    "description": "專業的企業級管理平台，助力業務數位轉型"
+  },
+  "nav": {
+    "dashboard": "儀表板",
+    "tickets": "工單管理",
+    "settings": "系統設定",
+    "users": "使用者管理",
+    "analytics": "資料分析"
+  },
+  "common": {
+    "save": "儲存",
+    "cancel": "取消",
+    "delete": "刪除",
+    "edit": "編輯",
+    "search": "搜尋",
+    "loading": "載入中...",
+    "success": "成功",
+    "error": "錯誤"
+  },
+  "page": {
+    "search": "搜尋功能、頁面、設定...",
+    "systemOk": "系統正常",
+    "mainNav": "主要功能",
+    "systemTools": "系統工具",
+    "realtimeSync": "即時同步",
+    "version": "v2.0.0",
+    "stable": "穩定版",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "儀表板",
+      "dashboardDesc": "資料概覽與洞察",
+      "tickets": "客服工單",
+      "ticketsDesc": "工單管理與追蹤",
+      "contracts": "合約審批",
+      "contractsDesc": "流程審批中心",
+      "reconciliation": "財務對帳",
+      "reconciliationDesc": "帳務核對分析",
+      "analytics": "資料分析",
+      "users": "使用者管理",
+      "settings": "系統設定"
+    }
+  },
+  "ai": {
+    "title": "AI 智慧助手",
+    "online": "線上",
+    "placeholder": "輸入訊息...",
+    "welcome": "你好！我是 YYC3 AI 助手，有什麼可以幫助你的？",
+    "quickAnalyze": "分析今日資料",
+    "quickReport": "生成工作報告",
+    "quickStatus": "系統狀態檢查"
+  }
+}

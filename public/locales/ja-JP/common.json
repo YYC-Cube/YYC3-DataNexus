@@ -54,5 +54,37 @@
     "minLength": "最小{{count}}文字必要です",
     "maxLength": "最大{{count}}文字まで",
     "pattern": "形式が正しくありません"
+  },
+  "page": {
+    "search": "機能、ページ、設定を検索...",
+    "systemOk": "システム正常",
+    "mainNav": "メイン機能",
+    "systemTools": "システムツール",
+    "realtimeSync": "リアルタイム同期",
+    "version": "v2.0.0",
+    "stable": "安定版",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "ダッシュボード",
+      "dashboardDesc": "データ概要とインサイト",
+      "tickets": "サポートチケット",
+      "ticketsDesc": "チケット管理と追跡",
+      "contracts": "契約承認",
+      "contractsDesc": "承認ワークフローセンター",
+      "reconciliation": "財務照合",
+      "reconciliationDesc": "勘定照合分析",
+      "analytics": "データ分析",
+      "users": "ユーザー管理",
+      "settings": "システム設定"
+    }
+  },
+  "ai": {
+    "title": "AIアシスタント",
+    "online": "オンライン",
+    "placeholder": "メッセージを入力...",
+    "welcome": "こんにちは！YYC3 AIアシスタントです。お手伝いできることはありますか？",
+    "quickAnalyze": "今日のデータを分析",
+    "quickReport": "レポートを生成",
+    "quickStatus": "システム状態確認"
   }
 }

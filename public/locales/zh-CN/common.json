@@ -197,5 +197,37 @@
     "weeksAgo": "{{count}} 周前",
     "monthsAgo": "{{count}} 个月前",
     "yearsAgo": "{{count}} 年前"
+  },
+  "page": {
+    "search": "搜索功能、页面、设置...",
+    "systemOk": "系统正常",
+    "mainNav": "主要功能",
+    "systemTools": "系统工具",
+    "realtimeSync": "实时同步",
+    "version": "v2.0.0",
+    "stable": "Stable",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "仪表盘",
+      "dashboardDesc": "数据概览与洞察",
+      "tickets": "客服工单",
+      "ticketsDesc": "工单管理与追踪",
+      "contracts": "合同审批",
+      "contractsDesc": "流程审批中心",
+      "reconciliation": "财务对账",
+      "reconciliationDesc": "账务核对分析",
+      "analytics": "数据分析",
+      "users": "用户管理",
+      "settings": "系统设置"
+    }
+  },
+  "ai": {
+    "title": "AI 智能助手",
+    "online": "在线",
+    "placeholder": "输入消息...",
+    "welcome": "你好！我是 YYC3 AI 助手，有什么可以帮助你的？",
+    "quickAnalyze": "分析今日数据",
+    "quickReport": "生成工作报告",
+    "quickStatus": "系统状态检查"
   }
 }

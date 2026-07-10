@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "YanYu Cloud³",
+    "tagline": "نظام إدارة الأعمال الذكي",
+    "description": "منصة إدارة مؤسسية احترافية للتحول الرقمي للأعمال"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "tickets": "إدارة التذاكر",
+    "settings": "إعدادات النظام",
+    "users": "إدارة المستخدمين",
+    "analytics": "تحليل البيانات"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تحرير",
+    "search": "بحث",
+    "loading": "جار التحميل...",
+    "success": "نجاح",
+    "error": "خطأ"
+  },
+  "page": {
+    "search": "البحث عن الميزات والصفحات والإعدادات...",
+    "systemOk": "النظام يعمل",
+    "mainNav": "الميزات الرئيسية",
+    "systemTools": "أدوات النظام",
+    "realtimeSync": "مزامنة فورية",
+    "version": "v2.0.0",
+    "stable": "مستقر",
+    "copyright": "© 2024 YanYu Cloud³ Team",
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "dashboardDesc": "نظرة عامة على البيانات",
+      "tickets": "تذاكر الدعم",
+      "ticketsDesc": "إدارة وتتبع التذاكر",
+      "contracts": "موافقة العقود",
+      "contractsDesc": "مركز موافقات العمليات",
+      "reconciliation": "التسوية المالية",
+      "reconciliationDesc": "تحليل التحقق من الحسابات",
+      "analytics": "تحليل البيانات",
+      "users": "إدارة المستخدمين",
+      "settings": "إعدادات النظام"
+    }
+  },
+  "ai": {
+    "title": "مساعد الذكاء الاصطناعي",
+    "online": "متصل",
+    "placeholder": "اكتب رسالة...",
+    "welcome": "مرحباً! أنا مساعد YYC3 AI. كيف يمكنني مساعدتك؟",
+    "quickAnalyze": "تحليل بيانات اليوم",
+    "quickReport": "إنشاء تقرير",
+    "quickStatus": "فحص حالة النظام"
+  }
+}
