@@ -45,7 +45,7 @@ export function CsvImport() {
   // 模拟CSV导入
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
-    if (!file) return
+    if (!file) {return}
 
     setImporting(true)
     setImportProgress(0)
@@ -191,7 +191,7 @@ export function CsvImport() {
   }
 
   const downloadExceptionReport = () => {
-    if (!importResult) return
+    if (!importResult) {return}
 
     const exceptions = importResult.records.filter(
       (r) => r.status === "unmatched" || r.status === "duplicate" || r.status === "invalid",

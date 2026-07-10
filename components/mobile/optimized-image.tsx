@@ -49,9 +49,9 @@ export function OptimizedImage({
 
   // 根据设备类型自动调整质量
   const getOptimalQuality = () => {
-    if (quality) return quality;
-    if (isMobile) return 75; // 移动端使用较低质量节省流量
-    if (isTablet) return 85; // 平板使用中等质量
+    if (quality) {return quality;}
+    if (isMobile) {return 75;} // 移动端使用较低质量节省流量
+    if (isTablet) {return 85;} // 平板使用中等质量
     return 90; // 桌面端使用高质量
   };
 
@@ -205,8 +205,8 @@ export function ResponsiveImageGrid({
   const isTablet = useMediaQuery("(max-width: 1024px)");
 
   const getColumns = () => {
-    if (isMobile) return columns.mobile;
-    if (isTablet) return columns.tablet;
+    if (isMobile) {return columns.mobile;}
+    if (isTablet) {return columns.tablet;}
     return columns.desktop;
   };
 
@@ -338,7 +338,7 @@ export function ImageViewer({
   // 键盘导航
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isOpen) return;
+      if (!isOpen) {return;}
 
       switch (event.key) {
         case "Escape":
@@ -357,7 +357,7 @@ export function ImageViewer({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen) {return null;}
 
   const currentImage = images[currentIndex];
 

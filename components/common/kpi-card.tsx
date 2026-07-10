@@ -31,14 +31,14 @@ export function KpiCard({
   description,
 }: KpiCardProps) {
   const getTrendIcon = () => {
-    if (trend === "up") return <TrendingUp className="h-3 w-3" />
-    if (trend === "down") return <TrendingDown className="h-3 w-3" />
+    if (trend === "up") {return <TrendingUp className="h-3 w-3" />}
+    if (trend === "down") {return <TrendingDown className="h-3 w-3" />}
     return <Minus className="h-3 w-3" />
   }
 
   const getTrendColor = () => {
-    if (trend === "up") return "text-green-600 bg-green-50"
-    if (trend === "down") return "text-red-600 bg-red-50"
+    if (trend === "up") {return "text-green-600 bg-green-50"}
+    if (trend === "down") {return "text-red-600 bg-red-50"}
     return "text-gray-600 bg-gray-50"
   }
 

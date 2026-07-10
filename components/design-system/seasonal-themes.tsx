@@ -65,7 +65,7 @@ export function SeasonalThemeProvider({
   }, [autoDetect])
 
   const changeSeason = (newSeason: Season) => {
-    if (!newSeason) return
+    if (!newSeason) {return}
     setSeason(newSeason)
     setAutoDetect(false) // 手动选择时关闭自动检测
   }

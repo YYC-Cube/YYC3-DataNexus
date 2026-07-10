@@ -288,7 +288,7 @@ export function PluginManager() {
   }
 
   const handleInstallPlugin = async () => {
-    if (!selectedPlugin) return
+    if (!selectedPlugin) {return}
 
     setIsInstalling(true)
     setInstallProgress(0)

@@ -316,7 +316,7 @@ export function MobileDrawer({
 }) {
   const deviceType = useDeviceType()
 
-  if (deviceType !== "mobile") return null
+  if (deviceType !== "mobile") {return null}
 
   return (
     <>
@@ -343,7 +343,7 @@ export function MobileDrawer({
 export function MobileBottomNav({ children, className }: ResponsiveLayoutProps) {
   const deviceType = useDeviceType()
 
-  if (deviceType !== "mobile") return null
+  if (deviceType !== "mobile") {return null}
 
   return (
     <nav

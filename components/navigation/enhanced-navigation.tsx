@@ -243,7 +243,7 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
   // 返回上一页
   const goBack = useCallback(() => {
     setNavigationState((prev) => {
-      if (prev.navigationHistory.length === 0) return prev
+      if (prev.navigationHistory.length === 0) {return prev}
 
       const newHistory = [...prev.navigationHistory]
       const previousItem = newHistory.pop()!
@@ -336,7 +336,7 @@ export function useNavigationPersistence() {
 export function EnhancedBreadcrumb() {
   const { activeMenu, navigateToMenu, breadcrumbs } = useNavigationPersistence()
 
-  if (breadcrumbs.length <= 1) return null
+  if (breadcrumbs.length <= 1) {return null}
 
   return (
     <AnimatedContainer animation="slideDown" className="mb-4">
@@ -386,7 +386,7 @@ export function NavigationQuickAccess() {
 
   const recentMenus = getRecentMenus()
 
-  if (!canGoBack && recentMenus.length === 0) return null
+  if (!canGoBack && recentMenus.length === 0) {return null}
 
   return (
     <div className="border-t border-secondary-200/50 p-2 space-y-2">

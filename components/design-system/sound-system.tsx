@@ -60,7 +60,7 @@ export function SoundProvider({ children, defaultEnabled = true, defaultVolume =
   // 生成不同类型的音效
   const generateTone = (frequency: number, duration: number, type: OscillatorType = "sine") => {
     const audioContext = getAudioContext()
-    if (!audioContext || !isEnabled) return
+    if (!audioContext || !isEnabled) {return}
 
     try {
       const oscillator = audioContext.createOscillator()
@@ -84,7 +84,7 @@ export function SoundProvider({ children, defaultEnabled = true, defaultVolume =
   }
 
   const playSound = (type: SoundType) => {
-    if (!isEnabled || !type) return
+    if (!isEnabled || !type) {return}
 
     switch (type) {
       case "click":

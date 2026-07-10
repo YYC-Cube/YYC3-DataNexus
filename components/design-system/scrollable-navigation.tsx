@@ -39,7 +39,7 @@ export function ScrollableNavigation({
   // 检查滚动状态的函数
   const checkScrollState = useCallback(() => {
     const container = scrollContainerRef.current
-    if (!container) return
+    if (!container) {return}
 
     const { scrollTop, scrollHeight, clientHeight } = container
     const hasOverflow = scrollHeight > clientHeight
@@ -55,7 +55,7 @@ export function ScrollableNavigation({
     const container = scrollContainerRef.current
     const activeElement = activeMenuRef.current
 
-    if (!container || !activeElement) return
+    if (!container || !activeElement) {return}
 
     const containerRect = container.getBoundingClientRect()
     const elementRect = activeElement.getBoundingClientRect()
@@ -87,7 +87,7 @@ export function ScrollableNavigation({
   // 初始化和事件监听
   useEffect(() => {
     const container = scrollContainerRef.current
-    if (!container) return
+    if (!container) {return}
 
     // 立即检查一次
     checkScrollState()
@@ -148,7 +148,7 @@ export function ScrollableNavigation({
   // 平滑滚动函数
   const smoothScroll = (direction: "up" | "down") => {
     const container = scrollContainerRef.current
-    if (!container) return
+    if (!container) {return}
 
     const scrollAmount = 120
     const currentScrollTop = container.scrollTop

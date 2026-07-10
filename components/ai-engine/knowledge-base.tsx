@@ -410,8 +410,8 @@ export function KnowledgeBase() {
 
   // 格式化文件大小
   const formatFileSize = (sizeInKB: number) => {
-    if (sizeInKB < 1024) return `${sizeInKB} KB`
-    if (sizeInKB < 1024 * 1024) return `${(sizeInKB / 1024).toFixed(1)} MB`
+    if (sizeInKB < 1024) {return `${sizeInKB} KB`}
+    if (sizeInKB < 1024 * 1024) {return `${(sizeInKB / 1024).toFixed(1)} MB`}
     return `${(sizeInKB / (1024 * 1024)).toFixed(1)} GB`
   }
 

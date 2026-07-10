@@ -140,7 +140,7 @@ export function NetworkStatusProvider({
 
   // 网络质量检测
   const performanceTest = async () => {
-    if (!isOnline) return;
+    if (!isOnline) {return;}
 
     try {
       const startTime = performance.now();
@@ -155,7 +155,7 @@ export function NetworkStatusProvider({
 
       clearTimeout(timeoutId);
 
-      if (!response.ok) return;
+      if (!response.ok) {return;}
 
       const endTime = performance.now();
       const latency = endTime - startTime;
@@ -178,7 +178,7 @@ export function NetworkStatusProvider({
 
   // 定期检测网络性能
   useEffect(() => {
-    if (!isOnline) return;
+    if (!isOnline) {return;}
 
     const interval = setInterval(performanceTest, 30000); // 每30秒检测一次
     performanceTest(); // 立即执行一次
@@ -270,14 +270,14 @@ export function NetworkStatusIndicator() {
   const { isOnline, isSlow, effectiveType, rtt } = useNetworkStatus();
 
   const getStatusColor = () => {
-    if (!isOnline) return "bg-red-500";
-    if (isSlow) return "bg-yellow-500";
+    if (!isOnline) {return "bg-red-500";}
+    if (isSlow) {return "bg-yellow-500";}
     return "bg-green-500";
   };
 
   const getStatusText = () => {
-    if (!isOnline) return "离线";
-    if (isSlow) return `慢网络 (${effectiveType})`;
+    if (!isOnline) {return "离线";}
+    if (isSlow) {return `慢网络 (${effectiveType})`;}
     return `在线 (${effectiveType})`;
   };
 

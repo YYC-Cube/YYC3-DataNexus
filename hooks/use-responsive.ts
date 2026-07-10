@@ -64,12 +64,12 @@ export function useResponsive(): ResponsiveState {
   }, [])
 
   let breakpoint: Breakpoint = "xs"
-  if (is2xl) breakpoint = "2xl"
-  else if (isXl) breakpoint = "xl"
-  else if (isLg) breakpoint = "lg"
-  else if (isMd) breakpoint = "md"
-  else if (isSm) breakpoint = "sm"
-  else breakpoint = "xs"
+  if (is2xl) {breakpoint = "2xl"}
+  else if (isXl) {breakpoint = "xl"}
+  else if (isLg) {breakpoint = "lg"}
+  else if (isMd) {breakpoint = "md"}
+  else if (isSm) {breakpoint = "sm"}
+  else {breakpoint = "xs"}
 
   return {
     isMobile: isXs || isSm,

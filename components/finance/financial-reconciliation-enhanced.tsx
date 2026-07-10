@@ -36,7 +36,7 @@ export function FinancialReconciliationEnhanced() {
 
   // 订阅 AI 分析事件
   useEffect(() => {
-    if (!isConnected) return
+    if (!isConnected) {return}
 
     subscribe("ai:analysis:completed", (data: any) => {
       console.log("AI 分析完成", data)

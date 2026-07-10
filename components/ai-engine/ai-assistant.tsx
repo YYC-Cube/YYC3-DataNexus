@@ -255,7 +255,7 @@ YanYu Cloud³作为新一代智能商务平台，融合了AI技术与云计算�
   }
 
   const handleSendMessage = async () => {
-    if (!inputMessage.trim() || isLoading) return
+    if (!inputMessage.trim() || isLoading) {return}
 
     playSound("click")
     const userMessage: AIMessage = {

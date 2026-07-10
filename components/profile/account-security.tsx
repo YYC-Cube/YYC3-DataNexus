@@ -135,19 +135,19 @@ export function AccountSecurity() {
 
   const getPasswordStrength = (password: string) => {
     let strength = 0
-    if (password.length >= 8) strength += 25
-    if (/[a-z]/.test(password)) strength += 25
-    if (/[A-Z]/.test(password)) strength += 25
-    if (/[0-9]/.test(password)) strength += 25
-    if (/[^A-Za-z0-9]/.test(password)) strength += 25
+    if (password.length >= 8) {strength += 25}
+    if (/[a-z]/.test(password)) {strength += 25}
+    if (/[A-Z]/.test(password)) {strength += 25}
+    if (/[0-9]/.test(password)) {strength += 25}
+    if (/[^A-Za-z0-9]/.test(password)) {strength += 25}
     return Math.min(strength, 100)
   }
 
   const getPasswordStrengthLabel = (strength: number) => {
-    if (strength < 25) return { label: "很弱", color: "text-red-600" }
-    if (strength < 50) return { label: "较弱", color: "text-orange-600" }
-    if (strength < 75) return { label: "中等", color: "text-yellow-600" }
-    if (strength < 100) return { label: "较强", color: "text-blue-600" }
+    if (strength < 25) {return { label: "很弱", color: "text-red-600" }}
+    if (strength < 50) {return { label: "较弱", color: "text-orange-600" }}
+    if (strength < 75) {return { label: "中等", color: "text-yellow-600" }}
+    if (strength < 100) {return { label: "较强", color: "text-blue-600" }}
     return { label: "很强", color: "text-green-600" }
   }
 

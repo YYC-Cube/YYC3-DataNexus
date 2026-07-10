@@ -49,8 +49,8 @@ export function useDeviceType() {
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
 
-  if (isMobile) return "mobile";
-  if (isTablet) return "tablet";
+  if (isMobile) {return "mobile";}
+  if (isTablet) {return "tablet";}
   return "desktop";
 }
 

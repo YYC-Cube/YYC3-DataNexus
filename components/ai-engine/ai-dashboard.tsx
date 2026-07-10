@@ -370,8 +370,8 @@ export function AIDashboard() {
   }
 
   const getResourceUsageColor = (usage: number) => {
-    if (usage >= 80) return "text-red-600"
-    if (usage >= 60) return "text-yellow-600"
+    if (usage >= 80) {return "text-red-600"}
+    if (usage >= 60) {return "text-yellow-600"}
     return "text-green-600"
   }
 

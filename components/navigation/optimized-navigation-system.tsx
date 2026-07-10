@@ -188,7 +188,7 @@ export function OptimizedNavigationProvider({ children }: { children: React.Reac
   // 返回上一页
   const goBack = useCallback(() => {
     setNavigationState((prev) => {
-      if (prev.navigationHistory.length === 0) return prev
+      if (prev.navigationHistory.length === 0) {return prev}
 
       const newHistory = [...prev.navigationHistory]
       const previousMenu = newHistory.pop()!
@@ -267,7 +267,7 @@ export function useOptimizedNavigation() {
 export function OptimizedBreadcrumb() {
   const { breadcrumbs, navigateToMenu } = useOptimizedNavigation()
 
-  if (breadcrumbs.length <= 1) return null
+  if (breadcrumbs.length <= 1) {return null}
 
   return (
     <AnimatedContainer animation="slideDown" className="mb-4">
@@ -519,7 +519,7 @@ export function OptimizedNavigationMenu({ menuItems }: OptimizedNavigationMenuPr
 export function NavigationHistory() {
   const { navigationHistory, goBack, canGoBack } = useOptimizedNavigation()
 
-  if (!canGoBack) return null
+  if (!canGoBack) {return null}
 
   return (
     <div className="p-2 border-t">

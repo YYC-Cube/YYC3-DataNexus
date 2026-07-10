@@ -16,7 +16,7 @@ export function useSafeArea(): SafeAreaInsets {
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") {return;}
 
     const updateSafeArea = () => {
       // 获取CSS环境变量（iOS Safari支持）
@@ -77,7 +77,7 @@ export function useSafeAreaCSS() {
   const safeArea = useSafeArea();
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
+    if (typeof document === "undefined") {return;}
 
     const root = document.documentElement;
     root.style.setProperty("--safe-area-inset-top", `${safeArea.top}px`);
@@ -94,7 +94,7 @@ export function useIsIOSSafari() {
   const [isIOSSafari, setIsIOSSafari] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") {return;}
 
     const userAgent = window.navigator.userAgent;
     const isIOS = /iPad|iPhone|iPod/.test(userAgent);

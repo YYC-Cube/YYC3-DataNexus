@@ -211,7 +211,7 @@ export function WorkflowDesigner({
   // 处理节点点击
   const onNodeClick = useCallback(
     (event: React.MouseEvent, node: Node) => {
-      if (readOnly) return;
+      if (readOnly) {return;}
       setSelectedNode(node);
       setNodeFormData({
         label: node.data.label,
@@ -227,7 +227,7 @@ export function WorkflowDesigner({
   // 处理边点击
   const onEdgeClick = useCallback(
     (event: React.MouseEvent, edge: Edge) => {
-      if (readOnly) return;
+      if (readOnly) {return;}
       setSelectedEdge(edge);
       setIsEdgeDialogOpen(true);
     },
@@ -237,7 +237,7 @@ export function WorkflowDesigner({
   // 处理连接
   const onConnect = useCallback(
     (params: Connection) => {
-      if (readOnly) return;
+      if (readOnly) {return;}
       setEdges((edges) =>
         addEdge(
           {
@@ -255,7 +255,7 @@ export function WorkflowDesigner({
 
   // 添加新节点
   const addNode = (type: string) => {
-    if (readOnly) return;
+    if (readOnly) {return;}
 
     const nodeNames = {
       start: "开始",
@@ -286,7 +286,7 @@ export function WorkflowDesigner({
 
   // 保存节点编辑
   const saveNodeEdit = () => {
-    if (!selectedNode) return;
+    if (!selectedNode) {return;}
 
     setNodes((nodes) =>
       nodes.map((node) => {
@@ -311,7 +311,7 @@ export function WorkflowDesigner({
 
   // 删除节点
   const deleteNode = () => {
-    if (!selectedNode) return;
+    if (!selectedNode) {return;}
 
     setNodes((nodes) => nodes.filter((n) => n.id !== selectedNode.id));
     setEdges((edges) =>
@@ -326,7 +326,7 @@ export function WorkflowDesigner({
 
   // 保存边编辑
   const saveEdgeEdit = (condition: string, description: string) => {
-    if (!selectedEdge) return;
+    if (!selectedEdge) {return;}
 
     setEdges((edges) =>
       edges.map((edge) => {
@@ -349,7 +349,7 @@ export function WorkflowDesigner({
 
   // 删除边
   const deleteEdge = () => {
-    if (!selectedEdge) return;
+    if (!selectedEdge) {return;}
 
     setEdges((edges) => edges.filter((e) => e.id !== selectedEdge.id));
     setIsEdgeDialogOpen(false);

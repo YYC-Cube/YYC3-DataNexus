@@ -113,8 +113,8 @@ export class DataVisualizationUtils {
         const aValue = a[sort.field];
         const bValue = b[sort.field];
 
-        if (aValue < bValue) return sort.direction === "asc" ? -1 : 1;
-        if (aValue > bValue) return sort.direction === "asc" ? 1 : -1;
+        if (aValue < bValue) {return sort.direction === "asc" ? -1 : 1;}
+        if (aValue > bValue) {return sort.direction === "asc" ? 1 : -1;}
       }
       return 0;
     });
@@ -198,9 +198,9 @@ export class DataVisualizationUtils {
 
   // 检测数据类型
   static detectDataType(value: any): "string" | "number" | "date" | "boolean" {
-    if (typeof value === "boolean") return "boolean";
-    if (typeof value === "number") return "number";
-    if (value instanceof Date) return "date";
+    if (typeof value === "boolean") {return "boolean";}
+    if (typeof value === "number") {return "number";}
+    if (value instanceof Date) {return "date";}
 
     // 检查是否为纯数字字符串
     if (

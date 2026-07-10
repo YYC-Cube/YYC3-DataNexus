@@ -334,8 +334,8 @@ export function RecommendationEngine() {
   }
 
   const filteredRecommendations = recommendations.filter((rec) => {
-    if (selectedCategory !== "all" && rec.category !== selectedCategory) return false
-    if (rec.confidence * 100 < confidenceThreshold[0]) return false
+    if (selectedCategory !== "all" && rec.category !== selectedCategory) {return false}
+    if (rec.confidence * 100 < confidenceThreshold[0]) {return false}
     return true
   })
 

@@ -38,7 +38,7 @@ export function SwipeAction({
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => {
-    if (disabled) return;
+    if (disabled) {return;}
 
     const { offset, velocity } = info;
 
@@ -171,7 +171,7 @@ export function BottomSheet({
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => {
-    if (!closeOnDragDown) return;
+    if (!closeOnDragDown) {return;}
 
     const { offset, velocity } = info;
 

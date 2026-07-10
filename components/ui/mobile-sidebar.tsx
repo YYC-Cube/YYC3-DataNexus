@@ -62,7 +62,7 @@ export function MobileSidebar({ isOpen, onClose, activeTab, onTabChange }: Mobil
     }
   }, [isOpen])
 
-  if (!isVisible) return null
+  if (!isVisible) {return null}
 
   return (
     <>

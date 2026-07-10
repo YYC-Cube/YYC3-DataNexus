@@ -387,7 +387,7 @@ export function TicketSystem() {
 
   // 发送消息
   const handleSendMessage = (ticketId: string) => {
-    if (!newMessage.trim()) return
+    if (!newMessage.trim()) {return}
 
     const message: TicketMessage = {
       id: `msg-${Date.now()}`,

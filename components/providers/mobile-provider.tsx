@@ -90,7 +90,7 @@ export function MobileProvider({
 
   // 检测平台和功能支持
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") {return;}
 
     const userAgent = window.navigator.userAgent;
 
