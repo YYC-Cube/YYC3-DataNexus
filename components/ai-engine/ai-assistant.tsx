@@ -1,15 +1,12 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { Bot, Send, Mic, MicOff, Volume2, VolumeX, Sparkles, Brain, Lightbulb, TrendingUp, FileText, Users, BarChart3, Settings, Zap, MessageSquare, Copy, ThumbsUp, ThumbsDown, RefreshCw, Download, Share2 } from 'lucide-react'
+import { BarChart3, Bot, Copy, Download, FileText, MessageSquare, Mic, MicOff, RefreshCw, Send, Settings, ThumbsDown, ThumbsUp, TrendingUp, Users, Volume2, VolumeX, Zap } from 'lucide-react'
+import { useEffect, useRef, useState } from "react"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,12 +14,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Textarea } from "@/components/ui/textarea"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Switch } from "@/components/ui/switch"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 
-import { EnhancedCard } from "../design-system/enhanced-card-system"
+import { toast } from "sonner"
+import { AnimatedContainer } from "../design-system/animation-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
-import { AnimatedContainer, FloatingElement } from "../design-system/animation-system"
+import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { useSound } from "../design-system/sound-system"
 
 // AI消息类型定义
@@ -246,7 +246,7 @@ YanYu Cloud³作为新一代智能商务平台，融合了AI技术与云计算�
       timestamp: new Date(),
       metadata: {
         model: "YanYu-AI-v3.0",
-        tokens: Math.floor(Math.random() *500) + 100,
+        tokens: Math.floor(Math.random() * 500) + 100,
         confidence: 0.85 + Math.random() * 0.1,
         suggestions: response.suggestions,
         actions: response.actions,
@@ -255,7 +255,7 @@ YanYu Cloud³作为新一代智能商务平台，融合了AI技术与云计算�
   }
 
   const handleSendMessage = async () => {
-    if (!inputMessage.trim() || isLoading) {return}
+    if (!inputMessage.trim() || isLoading) { return }
 
     playSound("click")
     const userMessage: AIMessage = {
@@ -273,6 +273,11 @@ YanYu Cloud³作为新一代智能商务平台，融合了AI技术与云计算�
       const aiResponse = await generateAIResponse(inputMessage)
       setMessages((prev) => [...prev, aiResponse])
       playSound("success")
+
+      // 语音播报 AI 回复
+      if (voiceEnabled) {
+        speakText(aiResponse.content)
+      }
     } catch (error) {
       console.error("AI响应错误:", error)
       const errorMessage: AIMessage = {
@@ -294,9 +299,68 @@ YanYu Cloud³作为新一代智能商务平台，融合了AI技术与云计算�
   }
 
   const handleVoiceToggle = () => {
-    setIsListening(!isListening)
-    playSound(isListening ? "click" : "success")
-  }
+    if (!isListening) {
+      // 开始语音识别
+      try {
+        const SpeechRecognition =
+          (window as any).SpeechRecognition ||
+          (window as any).webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+          toast.error("当前浏览器不支持语音识别", {
+            description: "请使用 Chrome 或 Edge 浏览器",
+          });
+          return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = "zh-CN";
+        recognition.continuous = false;
+        recognition.interimResults = true;
+
+        recognition.onresult = (event: any) => {
+          const transcript = Array.from(event.results)
+            .map((result: any) => result[0].transcript)
+            .join("");
+          setInputMessage(transcript);
+        };
+
+        recognition.onerror = (event: any) => {
+          console.warn("语音识别错误:", event.error);
+          setIsListening(false);
+        };
+
+        recognition.onend = () => {
+          setIsListening(false);
+        };
+
+        recognition.start();
+        setIsListening(true);
+        playSound("success");
+      } catch (error) {
+        console.error("启动语音识别失败:", error);
+        setIsListening(false);
+      }
+    } else {
+      setIsListening(false);
+      playSound("click");
+    }
+  };
+
+  // 语音播报：当 voiceEnabled 开启时自动朗读 AI 回复
+  const speakText = (text: string) => {
+    if (!voiceEnabled || typeof window === "undefined") { return; }
+    try {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "zh-CN";
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.cancel(); // 停止之前的朗读
+      window.speechSynthesis.speak(utterance);
+    } catch (error) {
+      console.warn("语音播报失败:", error);
+    }
+  };
 
   const handleCopyMessage = (content: string) => {
     navigator.clipboard.writeText(content)
@@ -400,13 +464,12 @@ YanYu Cloud³作为新一代智能商务平台，融合了AI技术与云计算�
                     className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[80%] ${
-                        message.type === "user"
-                          ? "bg-primary-500 text-white"
-                          : message.type === "system"
-                            ? "bg-accent-100 text-accent-800 border border-accent-200"
-                            : "bg-white border border-secondary-200"
-                      } rounded-lg p-3 shadow-sm`}
+                      className={`max-w-[80%] ${message.type === "user"
+                        ? "bg-primary-500 text-white"
+                        : message.type === "system"
+                          ? "bg-accent-100 text-accent-800 border border-accent-200"
+                          : "bg-white border border-secondary-200"
+                        } rounded-lg p-3 shadow-sm`}
                     >
                       {message.type !== "user" && (
                         <div className="flex items-center space-x-2 mb-2">

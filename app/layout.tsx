@@ -1,11 +1,12 @@
-import "../styles/globals.css"; // ✅ 引入全局样式
-import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { ThemeProvider } from "../theme-provider"; // ✅ 根目录引入
+import type React from "react";
+import { Toaster } from "sonner";
+import { SoundProvider } from "../components/design-system/sound-system";
 import { I18nProvider } from "../components/providers/i18n-provider";
 import { MobileProvider } from "../components/providers/mobile-provider";
 import { NetworkStatusProvider } from "../components/providers/network-status-provider";
-import { Toaster } from "sonner";
+import "../styles/globals.css"; // ✅ 引入全局样式
+import { ThemeProvider } from "../theme-provider"; // ✅ 根目录引入
 
 // 使用系统字体栈作为回退，避免构建时依赖外部网络
 const fontFamily = {
@@ -101,14 +102,16 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                {children}
-                <Toaster
-                  position="top-center"
-                  closeButton
-                  richColors
-                  expand={false}
-                  duration={4000}
-                />
+                <SoundProvider>
+                  {children}
+                  <Toaster
+                    position="top-center"
+                    closeButton
+                    richColors
+                    expand={false}
+                    duration={4000}
+                  />
+                </SoundProvider>
               </ThemeProvider>
             </I18nProvider>
           </NetworkStatusProvider>
