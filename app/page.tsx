@@ -1,15 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { AIFloatingWidget } from "@/components/ai-engine/ai-floating-widget"
 import { MainDashboard } from "@/components/dashboard/main-dashboard"
-import { TicketSystem } from "@/components/support/ticket-system"
-import { ContractApproval } from "@/components/workflow/contract-approval"
 import { FinancialReconciliation } from "@/components/finance/financial-reconciliation"
+import { LanguageSelector } from "@/components/i18n/language-selector"
+import { TicketSystem } from "@/components/support/ticket-system"
+import { MobileMenuButton, MobileSidebar } from "@/components/ui/mobile-sidebar"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { MobileSidebar, MobileMenuButton } from "@/components/ui/mobile-sidebar"
+import { ContractApproval } from "@/components/workflow/contract-approval"
 import { useResponsive } from "@/hooks/use-responsive"
-import { LayoutDashboard, Ticket, FileText, DollarSign, Users, Settings, BarChart3, Sparkles, Zap, TrendingUp, Shield, Bell, Search, ChevronRight, Star, ArrowUpRight, Activity, Globe, Cpu, Home as HomeIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Activity, ArrowUpRight, BarChart3, Bell, ChevronRight, Cpu, DollarSign, FileText, Globe, Home as HomeIcon, LayoutDashboard, Search, Settings, Shield, Sparkles, Star, Ticket, TrendingUp, Users, Zap } from "lucide-react"
+import { useEffect, useState } from "react"
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState("dashboard")
@@ -76,8 +78,8 @@ export default function HomePage() {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/30 to-purple-500/20 rounded-full blur-3xl animate-float" />
         <div className="absolute top-1/2 -left-20 w-60 h-60 bg-gradient-to-tr from-cyan-400/25 to-blue-500/15 rounded-full blur-3xl animate-float delay-500" />
         <div className="absolute -bottom-20 right-1/3 w-72 h-72 bg-gradient-to-tl from-purple-400/20 to-pink-500/15 rounded-full blur-3xl animate-float delay-1000" />
-        
-        <div 
+
+        <div
           className="absolute inset-0 opacity-[0.015]"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
@@ -89,10 +91,10 @@ export default function HomePage() {
       {/* ==================== 桌面端侧边栏 (≥md) ==================== */}
       <aside className={cn(
         "hidden md:flex flex-col z-10 border-r border-white/20 shadow-2xl transition-all duration-300",
-        responsive.isDesktop 
-          ? "w-80 glass-enhanced" 
-          : responsive.isTablet 
-            ? "w-64 glass-enhanced" 
+        responsive.isDesktop
+          ? "w-80 glass-enhanced"
+          : responsive.isTablet
+            ? "w-64 glass-enhanced"
             : ""
       )}>
         {/* Logo 区域 */}
@@ -119,7 +121,7 @@ export default function HomePage() {
                 <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full border-3 border-white animate-pulse shadow-lg shadow-green-500/50" />
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
               </div>
-              
+
               {!responsive.isTablet && (
                 <div className="flex-1 relative z-10">
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
@@ -148,7 +150,7 @@ export default function HomePage() {
             responsive.isTablet && "px-3 py-2.5"
           )}>
             <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-transparent animate-shimmer" />
-            
+
             <div className="relative flex items-center justify-between">
               <div className={cn(
                 "flex items-center space-x-2",
@@ -166,7 +168,7 @@ export default function HomePage() {
                   responsive.isTablet ? "text-[10px]" : "text-xs"
                 )}>系统正常</span>
               </div>
-              
+
               <div className={cn(
                 "flex items-center",
                 responsive.isTablet ? "space-x-1" : "space-x-1.5"
@@ -195,11 +197,11 @@ export default function HomePage() {
             )}>主要功能</p>
             <ThemeToggle />
           </div>
-          
+
           {navigationItems.map((item, index) => {
             const Icon = item.icon
             const isActive = activeTab === item.id
-            
+
             return (
               <button
                 key={item.id}
@@ -236,13 +238,13 @@ export default function HomePage() {
                     </div>
                   </>
                 )}
-                
+
                 <div className="relative z-10 flex items-center w-full">
                   <div className={cn(
                     "rounded-xl flex items-center justify-center mr-3 transition-all duration-300",
                     responsive.isTablet ? "w-8 h-8" : "w-10 h-10",
-                    isActive 
-                      ? "bg-white/20 backdrop-blur-sm shadow-inner" 
+                    isActive
+                      ? "bg-white/20 backdrop-blur-sm shadow-inner"
                       : `bg-gradient-to-br ${item.color} opacity-10 group-hover:opacity-20`
                   )}>
                     <Icon className={cn(
@@ -251,7 +253,7 @@ export default function HomePage() {
                       isActive && "drop-shadow-md"
                     )} />
                   </div>
-                  
+
                   <div className="flex-1 text-left">
                     <div className={cn(
                       "font-bold tracking-wide",
@@ -292,7 +294,7 @@ export default function HomePage() {
               <Cpu className={cn("text-blue-500", responsive.isTablet ? "w-2.5 h-2.5" : "w-3 h-3")} />
             </div>
           </div>
-          
+
           {secondaryItems.map((item) => {
             const Icon = item.icon
             return (
@@ -312,20 +314,20 @@ export default function HomePage() {
                   "font-semibold flex-1 text-left",
                   responsive.isTablet ? "text-xs" : "text-sm"
                 )}>{item.label}</span>
-                
+
                 {item.badge && !responsive.isTablet && (
                   <span className="px-2 py-0.5 text-[10px] font-black bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-md animate-pulse">
                     {item.badge}
                   </span>
                 )}
-                
+
                 {!responsive.isTablet && (
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
                 )}
               </button>
             )
           })}
-          
+
           {/* 版本信息卡片 */}
           <div className={cn(
             "mt-4 p-3 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl border border-slate-200/50 dark:border-slate-700/50 shadow-inner",
@@ -389,7 +391,7 @@ export default function HomePage() {
                 {navigationItems.find(item => item.id === activeTab)?.label}
               </h2>
             </div>
-            
+
             {/* 状态徽章 (隐藏于手机) */}
             {!responsive.isMobile && (
               <div className={cn(
@@ -400,11 +402,14 @@ export default function HomePage() {
               </div>
             )}
           </div>
-          
+
           <div className={cn(
             "flex items-center",
             responsive.isMobile ? "space-x-2" : "space-x-3"
           )}>
+            {/* 语言切换 */}
+            <LanguageSelector />
+
             {/* 通知铃铛 */}
             <button className={cn(
               "relative hover:bg-white/50 dark:hover:bg-white/10 rounded-xl transition-colors group flex-shrink-0",
@@ -419,7 +424,7 @@ export default function HomePage() {
                 responsive.isMobile ? "top-0.5 right-0.5 w-2 h-2" : "top-1 right-1 w-2.5 h-2.5"
               )} />
             </button>
-            
+
             {/* 用户头像 */}
             <div className={cn(
               "bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/25 cursor-pointer hover:scale-110 hover:rotate-6 transition-transform duration-300 flex-shrink-0",
@@ -446,6 +451,9 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+
+      {/* AI 浮窗助手 */}
+      <AIFloatingWidget />
     </div>
   )
 }
