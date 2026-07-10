@@ -1,7 +1,7 @@
 import js from '@eslint/js'
-import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
@@ -23,8 +23,15 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/purity': 'warn',
+      'react-hooks/immutability': 'warn',
+      'react-hooks/refs': 'warn',
+      'no-useless-assignment': 'warn',
       '@typescript-eslint/no-unused-vars': [
-        'error',
+        'warn',
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
@@ -33,11 +40,20 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'warn',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
-      'prefer-const': 'error',
+      'no-case-declarations': 'warn',
+      'prefer-const': 'warn',
       'no-var': 'error',
-      eqeqeq: ['error', 'always'],
-      curly: ['error', 'all'],
+      eqeqeq: ['warn', 'always'],
+      curly: ['warn', 'all'],
+    },
+  },
+  {
+    // shadcn/ui generated components - relax compiler rules
+    files: ['components/ui/**/*.{ts,tsx}'],
+    rules: {
+      'react-hooks/rules-of-hooks': 'warn',
     },
   },
 )

@@ -58,7 +58,6 @@ jobs:
 
       - name: 🔎 TypeScript 类型检查
         id: typescript
-        continue-on-error: true
         run: |
           echo "=== TypeScript 编译检查 ==="
           npx tsc --noEmit 2>&1 | tee typescript-output.log
@@ -67,13 +66,13 @@ jobs:
             echo "status=pass" >> $GITHUB_OUTPUT
           else
             error_count=$(grep -c "error TS" typescript-output.log || echo "0")
-            echo "⚠️ TypeScript 发现 ${error_count} 个错误（非阻断）"
+            echo "❌ TypeScript 发现 ${error_count} 个错误"
             echo "status=fail" >> $GITHUB_OUTPUT
+            exit 1
           fi
 
       - name: 🎨 ESLint 代码规范检查
         id: eslint
-        continue-on-error: true
         run: |
           echo "=== ESLint 代码质量检查 ==="
 

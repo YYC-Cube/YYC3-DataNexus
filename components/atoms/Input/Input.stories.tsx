@@ -89,7 +89,7 @@ export const WithRightIcon: Story = {
 }
 
 export const PasswordWithToggle: Story = {
-  render: () => {
+  render: function PasswordWithToggleRender() {
     const [showPassword, setShowPassword] = useState(false)
 
     return (

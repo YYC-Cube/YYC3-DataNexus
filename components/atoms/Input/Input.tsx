@@ -38,7 +38,8 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, variant, inputSize, label, error, helperText, leftIcon, rightIcon, id, ...props }, ref) => {
-    const inputId = id || `input-${React.useId()}`
+    const generatedId = React.useId()
+    const inputId = id || `input-${generatedId}`
     const hasError = !!error
     const computedVariant = hasError ? "error" : variant
 
