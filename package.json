@@ -94,7 +94,7 @@
     "@vitejs/plugin-react": "latest",
     "@vitest/browser": "latest",
     "@vitest/ui": "latest",
-    "@yyc3/ui": "file:./package-ui",
+    "@yyc3/ui": "^2.1.1",
     "autoprefixer": "latest",
     "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",

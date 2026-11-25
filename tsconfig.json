@@ -43,6 +43,7 @@
     "package-ui",
     "package-cli",
     "design-system",
+    "src/app/yyc3-ui-demo",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.spec.ts",
