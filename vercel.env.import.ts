@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import readline from 'readline';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 
 const ENV_FILE = '.env.dev';
 const TARGET_ENV = process.argv[2] || 'development'; // 可选：preview / production
@@ -38,7 +38,8 @@ rl.on('line', (line) => {
   }
 
   try {
-    execSync(`vercel env add ${key} ${TARGET_ENV} <<< "${value}"`, { stdio: 'inherit' });
+    // 数组参数形式 + stdin 传值：消除 shell 注入面（value 不再经过 shell 解释）
+    execFileSync('vercel', ['env', 'add', key, TARGET_ENV], { input: value + '\n', stdio: ['pipe', 'inherit', 'inherit'] });
     console.log(`✅ 成功导入：${key}`);
   } catch (error) {
     console.error(`❌ 导入失败：${key}`);
