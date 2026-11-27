@@ -3,7 +3,7 @@ import { pool } from '../config/database';
 import { securityLogService } from '../services/security-log.service';
 import { AppError } from '../utils/app-error';
 import { logger } from '../config/logger';
-import type { AuthenticatedRequest, SecurityLogEntry } from '../types/api.types';
+import type {AuthenticatedRequest,} from '../types/api.types';
 
 interface LoginHistoryEntry {
   id: string;
@@ -16,7 +16,7 @@ interface LoginHistoryEntry {
   timestamp: Date;
 }
 
-interface ActivityLogEntry {
+interface _ActivityLogEntry {
   id: string;
   user_id: string;
   username: string;
@@ -215,8 +215,8 @@ class SecurityLogController {
       const { timeRange = '7d' } = req.query;
       // 获取安全统计信息
       let days = 7;
-      if (timeRange === '24h') days = 1;
-      if (timeRange === '30d') days = 30;
+      if (timeRange === '24h') {days = 1;}
+      if (timeRange === '30d') {days = 30;}
       
       const statistics = await securityLogService.getSecurityStats(days);
 

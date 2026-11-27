@@ -181,7 +181,7 @@ export function RealTimeMonitoring() {
                     <Progress
                       value={metric.value}
                       className="h-2"
-                      // @ts-ignore
+                      // @ts-expect-error Progress 组件未声明 indicatorClassName prop（存量 UI 扩展用法）
                       indicatorClassName={metric.value > metric.threshold ? "bg-red-500" : "bg-green-500"}
                     />
                     <div className="flex justify-between text-xs text-secondary-500 mt-1">
@@ -222,7 +222,7 @@ export function RealTimeMonitoring() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {serverStatus.map((server, index) => {
+                {serverStatus.map((server, _index) => {
                   const StatusIcon = getStatusIcon(server.status)
                   return (
                     <div key={server.name} className="p-4 border rounded-lg">
@@ -319,7 +319,7 @@ export function RealTimeMonitoring() {
               </TabsList>
               <TabsContent value="traffic" className="mt-4">
                 <div className="space-y-4">
-                  {networkTraffic.map((data, index) => (
+                  {networkTraffic.map((data, _index) => (
                     <div key={data.time} className="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
                       <div className="font-medium">{data.time}</div>
                       <div className="flex items-center space-x-4">

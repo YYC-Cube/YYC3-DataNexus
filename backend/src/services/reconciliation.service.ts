@@ -317,7 +317,7 @@ export class ReconciliationService {
   /**
    * 批量匹配对账
    */
-  async bulkMatch(filters: ReconciliationFilters): Promise<ReconciliationResult> {
+  async bulkMatch(_filters: ReconciliationFilters): Promise<ReconciliationResult> {
     try {
       const unmatchedRecords = await this.getUnmatchedRecords()
       const rules = await this.getActiveRules()
@@ -416,7 +416,7 @@ export class ReconciliationService {
     for (const rule of rules) {
       if (rule.ruleType === "amount_match") {
         const match = await this.findAmountMatch(record, rule.amountTolerance)
-        if (match) return match
+        if (match) {return match}
       }
     }
     return null
@@ -538,8 +538,8 @@ export class ReconciliationService {
    */
   async updateRecord(
     recordId: string,
-    updates: Partial<ReconciliationRecord>,
-    userId: string
+    _updates: Partial<ReconciliationRecord>,
+    _userId: string
   ): Promise<ReconciliationRecord | null> {
     let query = `
       UPDATE reconciliation_records
@@ -554,7 +554,7 @@ export class ReconciliationService {
     query += ` WHERE id = $${paramIndex}`
     params.push(recordId)
 
-    const result = await pool.query(query, params)
+    const _result = await pool.query(query, params)
     // 实际实现中应该返回更新后的记录
     return this.getRecordById(recordId)
   }
@@ -565,7 +565,7 @@ export class ReconciliationService {
   async resolveException(
     exceptionId: string,
     resolutionNotes: string,
-    userId: string
+    _userId: string
   ): Promise<ReconciliationException | null> {
     const query = `
       UPDATE reconciliation_exceptions

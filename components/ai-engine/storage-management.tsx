@@ -375,10 +375,10 @@ const mockBackupJobs: BackupJob[] = [
 export function StorageManagement() {
   const [selectedTab, setSelectedTab] = useState("overview")
   const [storageNodes, setStorageNodes] = useState<StorageNode[]>(mockStorageNodes)
-  const [storagePools, setStoragePools] = useState<StoragePool[]>(mockStoragePools)
-  const [dataFiles, setDataFiles] = useState<DataFile[]>(mockDataFiles)
+  const [storagePools, _setStoragePools] = useState<StoragePool[]>(mockStoragePools)
+  const [dataFiles, _setDataFiles] = useState<DataFile[]>(mockDataFiles)
   const [backupJobs, setBackupJobs] = useState<BackupJob[]>(mockBackupJobs)
-  const [selectedNode, setSelectedNode] = useState<StorageNode | null>(null)
+  const [_selectedNode, _setSelectedNode] = useState<StorageNode | null>(null)
   const [isCreatePoolOpen, setIsCreatePoolOpen] = useState(false)
   const { playSound } = useSound()
 
@@ -425,7 +425,7 @@ export function StorageManagement() {
     return <Badge className={config.className}>{config.label}</Badge>
   }
 
-  const getStatusIcon = (status: string) => {
+  const _getStatusIcon = (status: string) => {
     switch (status) {
       case "online":
       case "healthy":
@@ -504,7 +504,7 @@ export function StorageManagement() {
   // 计算总体存储统计
   const totalCapacity = storageNodes.reduce((acc, node) => acc + node.capacity, 0)
   const totalUsed = storageNodes.reduce((acc, node) => acc + node.used, 0)
-  const totalAvailable = storageNodes.reduce((acc, node) => acc + node.available, 0)
+  const _totalAvailable = storageNodes.reduce((acc, node) => acc + node.available, 0)
   const averageUsage = Math.round(storageNodes.reduce((acc, node) => acc + node.usage, 0) / storageNodes.length)
   const averageHealth = Math.round(storageNodes.reduce((acc, node) => acc + node.health, 0) / storageNodes.length)
 

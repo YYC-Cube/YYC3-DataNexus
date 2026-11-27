@@ -1,24 +1,8 @@
-import React, { useState, useCallback } from "react";
-import { Bell, AlertTriangle, CheckCircle, XCircle, Settings, Mail, MessageSquare, Webhook, Plus, Trash2, Edit, Play, Clock, TrendingUp, BarChart3, Shield, Save, Copy, Download, Filter, Search, Target, Activity, Smartphone } from "lucide-react";
+import React, {useState,} from "react";
+import {CheckCircle, XCircle, Settings,} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
-import { Slider } from "@/components/ui/slider";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Separator } from "@/components/ui/separator";
-import { EnhancedCard } from "../design-system/enhanced-card-system";
-import { EnhancedButton } from "../design-system/enhanced-button-system";
-import { AnimatedContainer } from "../design-system/animation-system";
-import { useSound } from "../design-system/sound-system";
 
 // 数据类型定义
 interface AlertCondition {
@@ -69,7 +53,7 @@ interface AlertConfig {
   tags: string[];
 }
 
-interface AlertHistory {
+interface _AlertHistory {
   id: string;
   ruleId: string;
   ruleName: string;
@@ -94,7 +78,7 @@ interface DataSource {
 }
 
 // 模拟数据
-const mockDataSources: DataSource[] = [
+const _mockDataSources: DataSource[] = [
   {
     id: "users",
     name: "用户数据",
@@ -199,7 +183,7 @@ const alertConfigs: AlertConfig[] = mockNotificationChannels.map(channel => ({
 
 // 数据警报组件
 export default function DataAlert() {
-  const [alerts, setAlerts] = useState<AlertConfig[]>(alertConfigs);
+  const [alerts, _setAlerts] = useState<AlertConfig[]>(alertConfigs);
   const [isConfiguring, setIsConfiguring] = useState(false);
 
   return (

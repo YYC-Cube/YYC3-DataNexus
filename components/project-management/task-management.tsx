@@ -64,7 +64,7 @@ interface Task {
 }
 
 export function TaskManagement() {
-  const [tasks, setTasks] = useState<Task[]>([
+  const [tasks, _setTasks] = useState<Task[]>([
     {
       id: "1",
       title: "设计系统架构",
@@ -292,9 +292,10 @@ export function TaskManagement() {
     switch (sortBy) {
       case "title":
         return a.title.localeCompare(b.title)
-      case "priority":
+      case "priority": {
         const priorityOrder = { critical: 4, high: 3, medium: 2, low: 1 }
         return priorityOrder[b.priority] - priorityOrder[a.priority]
+      }
       case "assignee":
         return a.assignee.name.localeCompare(b.assignee.name)
       case "dueDate":

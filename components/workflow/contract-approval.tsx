@@ -468,7 +468,7 @@ export function ContractApproval() {
           )
 
           // 更新合同状态
-          let newStatus = contract.status
+          let newStatus: typeof contract.status
           let newCurrentStep = contract.currentStep
 
           if (action === "approve") {

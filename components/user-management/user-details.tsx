@@ -313,7 +313,7 @@ export function UserDetails() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {permissions.map((permission, index) => (
+                  {permissions.map((permission, _index) => (
                     <div
                       key={permission.module}
                       className="flex items-center justify-between p-4 rounded-lg bg-secondary-50"

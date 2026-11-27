@@ -3,7 +3,7 @@
 import * as React from "react"
 import { cn } from "../../lib/utils"
 
-export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {}
+export type FormProps = React.FormHTMLAttributes<HTMLFormElement>
 
 const Form = React.forwardRef<HTMLFormElement, FormProps>(
   ({ className, ...props }, ref) => (
@@ -12,7 +12,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(
 )
 Form.displayName = "Form"
 
-export interface FormItemProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type FormItemProps = React.HTMLAttributes<HTMLDivElement>
 
 const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
   ({ className, ...props }, ref) => (
@@ -21,8 +21,7 @@ const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
 )
 FormItem.displayName = "FormItem"
 
-export interface FormLabelProps
-  extends React.LabelHTMLAttributes<HTMLLabelElement> {}
+export type FormLabelProps = React.LabelHTMLAttributes<HTMLLabelElement>
 
 const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
   ({ className, ...props }, ref) => (
@@ -38,16 +37,14 @@ const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
 )
 FormLabel.displayName = "FormLabel"
 
-export interface FormControlProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type FormControlProps = React.HTMLAttributes<HTMLDivElement>
 
 const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
   ({ ...props }, ref) => <div ref={ref} {...props} />
 )
 FormControl.displayName = "FormControl"
 
-export interface FormDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {}
+export type FormDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
 
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,

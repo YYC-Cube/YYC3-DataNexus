@@ -85,7 +85,7 @@ export function AppearanceSettings() {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setSaveStatus("success")
       setTimeout(() => setSaveStatus("idle"), 3000)
-    } catch (error) {
+    } catch (_error) {
       setSaveStatus("error")
       setTimeout(() => setSaveStatus("idle"), 3000)
     } finally {
@@ -111,7 +111,7 @@ export function AppearanceSettings() {
     })
   }
 
-  const getThemeIcon = (theme: string) => {
+  const _getThemeIcon = (theme: string) => {
     switch (theme) {
       case "light":
         return <Sun className="h-4 w-4" />

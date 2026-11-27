@@ -151,7 +151,7 @@ const mockStorePlugins: StorePlugin[] = [
 ]
 
 export function PluginStore() {
-  const [plugins, setPlugins] = useState<StorePlugin[]>(mockStorePlugins)
+  const [plugins, _setPlugins] = useState<StorePlugin[]>(mockStorePlugins)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [sortBy, setSortBy] = useState("popular")

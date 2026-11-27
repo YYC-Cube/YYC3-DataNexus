@@ -257,12 +257,12 @@ const mockStats: TenantStats = {
 
 export function TenantManagement() {
   const [tenants, setTenants] = useState<Tenant[]>(mockTenants)
-  const [stats, setStats] = useState<TenantStats>(mockStats)
+  const [stats, _setStats] = useState<TenantStats>(mockStats)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [selectedPlan, setSelectedPlan] = useState("all")
   const [showCreateDialog, setShowCreateDialog] = useState(false)
-  const [selectedTenant, setSelectedTenant] = useState<Tenant | null>(null)
+  const [_selectedTenant, _setSelectedTenant] = useState<Tenant | null>(null)
   const [newTenant, setNewTenant] = useState({
     name: "",
     subdomain: "",

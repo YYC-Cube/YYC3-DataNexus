@@ -60,7 +60,7 @@ describe('use-responsive hooks', () => {
         dispatchEvent: jest.fn(),
       }));
 
-      const { result, rerender } = renderHook(() => useMediaQuery('(max-width: 768px)'));
+      const { result, rerender: _rerender } = renderHook(() => useMediaQuery('(max-width: 768px)'));
       expect(result.current).toBe(false);
 
       act(() => {

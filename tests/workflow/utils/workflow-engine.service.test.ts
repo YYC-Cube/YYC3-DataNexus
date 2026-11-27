@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { WorkflowEngineService } from '../../../services/workflow/workflow-engine.service';
+import '../../../services/workflow/workflow-engine.service';
 
 // 模拟axios
 jest.mock('axios');
@@ -8,86 +8,56 @@ const mockAxios = axios as jest.Mocked<typeof axios>;
 // 模拟服务实现
 const workflowEngineService = {
   listWorkflowTasks: async () => {
-    try {
-      const response = await mockAxios.get('/api/workflow/tasks', { params: { status: 'all' } });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.get('/api/workflow/tasks', { params: { status: 'all' } });
+    return response.data;
+
   },
   fetchUserTasks: async (status = 'all', priority = 'all', page = 1, pageSize = 10) => {
-    try {
-      const response = await mockAxios.get('/api/workflow/tasks', { 
-        params: { status, priority, page, pageSize } 
-      });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.get('/api/workflow/tasks', { 
+      params: { status, priority, page, pageSize } 
+    });
+    return response.data;
+
   },
   approveTask: async (taskId: string, approvalData: any = { comment: '' }) => {
-    try {
-      const response = await mockAxios.post(`/api/workflow/tasks/${taskId}/approve`, approvalData);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.post(`/api/workflow/tasks/${taskId}/approve`, approvalData);
+    return response.data;
+
   },
   rejectTask: async (taskId: string, rejectionData: any) => {
-    try {
-      const response = await mockAxios.post(`/api/workflow/tasks/${taskId}/reject`, rejectionData);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.post(`/api/workflow/tasks/${taskId}/reject`, rejectionData);
+    return response.data;
+
   },
   addTaskComment: async (taskId: string, commentData: any) => {
-    try {
-      const response = await mockAxios.post(`/api/workflow/tasks/${taskId}/comments`, commentData);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.post(`/api/workflow/tasks/${taskId}/comments`, commentData);
+    return response.data;
+
   },
   createWorkflowInstance: async (workflowId: string, variables: any) => {
-    try {
-      const response = await mockAxios.post('/api/workflow/instances', { workflowId, variables });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.post('/api/workflow/instances', { workflowId, variables });
+    return response.data;
+
   },
   getWorkflowInstance: async (instanceId: string) => {
-    try {
-      const response = await mockAxios.get(`/api/workflow/instances/${instanceId}`);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.get(`/api/workflow/instances/${instanceId}`);
+    return response.data;
+
   },
   updateWorkflowInstance: async (instanceId: string, updateData: any) => {
-    try {
-      const response = await mockAxios.patch(`/api/workflow/instances/${instanceId}`, updateData);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.patch(`/api/workflow/instances/${instanceId}`, updateData);
+    return response.data;
+
   },
   listWorkflowDefinitions: async (isActive = true) => {
-    try {
-      const response = await mockAxios.get('/api/workflow/definitions', { params: { isActive } });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.get('/api/workflow/definitions', { params: { isActive } });
+    return response.data;
+
   },
   getWorkflowStatistics: async (startDate?: string, endDate?: string) => {
-    try {
-      const response = await mockAxios.get('/api/workflow/statistics', startDate && endDate ? { params: { startDate, endDate } } : undefined);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+    const response = await mockAxios.get('/api/workflow/statistics', startDate && endDate ? { params: { startDate, endDate } } : undefined);
+    return response.data;
+
   }
 };
 

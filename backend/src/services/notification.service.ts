@@ -1,7 +1,7 @@
 import { redisPubSubService, RedisChannel, type PubSubMessage } from "./redis-pubsub.service"
 import { wsService } from '../server'
 import { logger } from "../config/logger"
-import { aiAnalysisTotal, aiAnalysisErrors, aiAnalysisLatency, aiTokensUsed } from "../config/metrics"
+import {aiAnalysisTotal, aiAnalysisErrors,} from "../config/metrics"
 import type { NotificationPayload } from "../types/websocket"
 
 export enum NotificationEvent {

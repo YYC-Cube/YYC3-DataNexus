@@ -5,6 +5,7 @@ import { authService } from '../services/auth.service';
 
 // 扩展Express Request类型以包含user属性
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace -- Express 类型扩充惯用法；backend 未装 @types/express，改 declare module 'express-serve-static-core' 反会编译报错
   namespace Express {
     interface Request {
       user?: {
@@ -138,7 +139,7 @@ const optionalAuth = async (req: import('express').Request, res: import('express
 const csrfProtection = (req: import('express').Request, res: import('express').Response, next: import('express').NextFunction) => {
   // 对于API请求，通常只需要验证来源头
   const origin = req.headers.origin;
-  const referer = req.headers.referer;
+  const _referer = req.headers.referer;
   const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000'];
 
   // 检查是否是安全的请求方法
@@ -159,7 +160,7 @@ const csrfProtection = (req: import('express').Request, res: import('express').R
  * @returns {Function} 中间件函数
  */
 const sessionTimeout = (timeoutMinutes: number = 30) => {
-  const timeoutMs = timeoutMinutes * 60 * 1000;
+  const _timeoutMs = timeoutMinutes * 60 * 1000;
 
   return (req: import('express').Request, res: import('express').Response, next: import('express').NextFunction) => {
     if (req.user) {

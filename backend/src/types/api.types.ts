@@ -138,11 +138,11 @@ export interface LoginRequest {
   ipAddress?: string;
 }
 
-export interface LoginResponse extends ApiResponse<{
+export type LoginResponse = ApiResponse<{
   user: Omit<UserInfo, 'status' | 'createdAt' | 'lastLoginAt'>;
   accessToken: string;
   refreshToken: string;
-}> {}
+}>;
 
 export interface RegisterRequest {
   email: string;

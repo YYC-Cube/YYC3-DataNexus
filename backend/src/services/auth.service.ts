@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import path from 'path';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
@@ -303,7 +302,7 @@ class AuthService {
     }
   }
 
-  async resetPassword(token: string, newPassword: string): Promise<void> {
+  async resetPassword(_token: string, _newPassword: string): Promise<void> {
     try {
       logger.info('Password reset attempt with token');
     } catch (error) {
@@ -312,7 +311,7 @@ class AuthService {
     }
   }
 
-  async changePassword(userId: string, currentPassword: string, newPassword: string): Promise<void> {
+  async changePassword(userId: string, _currentPassword: string, _newPassword: string): Promise<void> {
     try {
       logger.info('Password change attempt', { userId });
     } catch (error) {

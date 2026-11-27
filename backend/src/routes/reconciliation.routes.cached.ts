@@ -38,12 +38,12 @@ router.get(
     keyGenerator: (req) => {
       const { status, type, dateFrom, dateTo, limit, offset } = req.query
       const parts = ["list"]
-      if (status) parts.push(`status:${status}`)
-      if (type) parts.push(`type:${type}`)
-      if (dateFrom) parts.push(`from:${dateFrom}`)
-      if (dateTo) parts.push(`to:${dateTo}`)
-      if (limit) parts.push(`limit:${limit}`)
-      if (offset) parts.push(`offset:${offset}`)
+      if (status) {parts.push(`status:${status}`)}
+      if (type) {parts.push(`type:${type}`)}
+      if (dateFrom) {parts.push(`from:${dateFrom}`)}
+      if (dateTo) {parts.push(`to:${dateTo}`)}
+      if (limit) {parts.push(`limit:${limit}`)}
+      if (offset) {parts.push(`offset:${offset}`)}
       return parts.join(":")
     },
   }),

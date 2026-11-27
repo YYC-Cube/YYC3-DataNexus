@@ -505,7 +505,7 @@ const statusColors = {
 
 export function DevelopmentPriorityRoadmap() {
   const [selectedQuarter, setSelectedQuarter] = useState("q1")
-  const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null)
+  const [_selectedFeature, _setSelectedFeature] = useState<Feature | null>(null)
 
   const totalHours = developmentRoadmap.reduce((sum, quarter) => sum + quarter.totalHours, 0)
   const completedHours = developmentRoadmap.reduce(

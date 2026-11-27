@@ -305,7 +305,7 @@ export function OptimizedBreadcrumb() {
 
 // 优化的菜单高亮组件
 export function OptimizedMenuHighlight({
-  menuTitle,
+  menuTitle: _menuTitle,
   isActive,
   isParentActive,
   isChildActive,
@@ -517,7 +517,7 @@ export function OptimizedNavigationMenu({ menuItems }: OptimizedNavigationMenuPr
 
 // 导航历史组件
 export function NavigationHistory() {
-  const { navigationHistory, goBack, canGoBack } = useOptimizedNavigation()
+  const { navigationHistory: _navigationHistory, goBack, canGoBack } = useOptimizedNavigation()
 
   if (!canGoBack) {return null}
 

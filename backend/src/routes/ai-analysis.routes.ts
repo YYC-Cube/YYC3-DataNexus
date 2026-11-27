@@ -3,7 +3,7 @@ import { AiAnalysisService } from '../services/ai-analysis.service';
 import { OpenAIService } from '../services/openai.service';
 import { PromptTemplatesService } from '../services/prompt-templates.service';
 import { ReconciliationService } from '../services/reconciliation.service';
-import { ticketIntelligenceService } from '../services/ai/ticket-intelligence.service';
+import '../services/ai/ticket-intelligence.service';
 import { authenticate as authMiddleware, authorize as checkPermission } from '../middleware/auth.middleware';
 import { rateLimiter } from '../middleware/rate-limiter.middleware';
 import { logger } from '../config/logger';

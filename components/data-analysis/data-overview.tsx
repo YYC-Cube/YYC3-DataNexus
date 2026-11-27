@@ -114,7 +114,7 @@ export function DataOverview() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {chartData.map((item, index) => (
+                {chartData.map((item, _index) => (
                   <div key={item.name} className="flex items-center space-x-4">
                     <div className="w-8 text-sm text-secondary-600">{item.name}</div>
                     <div className="flex-1">

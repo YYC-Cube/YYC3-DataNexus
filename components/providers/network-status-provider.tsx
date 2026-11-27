@@ -170,7 +170,7 @@ export function NetworkStatusProvider({
           });
         }
       }
-    } catch (error) {
+    } catch (_error) {
       // API 未启动或网络问题 - 静默处理，不显示错误
       // 仅用于性能检测，不影响核心功能
     }

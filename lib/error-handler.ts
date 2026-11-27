@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 
-interface ErrorResponse {
+interface _ErrorResponse {
   success: boolean;
   error: {
     code: string;

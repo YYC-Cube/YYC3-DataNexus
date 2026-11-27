@@ -148,7 +148,7 @@ export function PermissionManagement() {
   const [activeTab, setActiveTab] = useState("roles")
   const [selectedRole, setSelectedRole] = useState<Role | null>(null)
   const [isCreateRoleOpen, setIsCreateRoleOpen] = useState(false)
-  const [isEditRoleOpen, setIsEditRoleOpen] = useState(false)
+  const [_isEditRoleOpen, _setIsEditRoleOpen] = useState(false)
 
   const permissionsByCategory = mockPermissions.reduce(
     (acc, permission) => {

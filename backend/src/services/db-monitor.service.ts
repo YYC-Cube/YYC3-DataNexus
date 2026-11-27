@@ -64,7 +64,7 @@ export class DbMonitorService {
   }
 
   private static findInPlan(plan: QueryPlanNode, nodeName: string): boolean {
-    if (!plan) return false;
+    if (!plan) {return false;}
 
     if (plan["Node Type"] === nodeName) {
       return true;

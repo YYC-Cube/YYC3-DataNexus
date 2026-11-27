@@ -83,21 +83,17 @@ interface CacheOperationResult {
 export const withCacheMetrics = async <T extends CacheOperationResult>(
   cacheFn: () => Promise<T>
 ): Promise<T> => {
-  try {
-    const result = await cacheFn();
-    
-    // 这里简化处理，实际项目中应该维护全局的命中和未命中计数
-    // 然后根据这些计数计算命中率
-    if (result.hit) {
-      // 记录缓存命中
-      console.log('Cache hit');
-    } else {
-      // 记录缓存未命中
-      console.log('Cache miss');
-    }
-    
-    return result;
-  } catch (error) {
-    throw error;
+  const result = await cacheFn();
+
+  // 这里简化处理，实际项目中应该维护全局的命中和未命中计数
+  // 然后根据这些计数计算命中率
+  if (result.hit) {
+    // 记录缓存命中
+    console.log('Cache hit');
+  } else {
+    // 记录缓存未命中
+    console.log('Cache miss');
   }
+
+  return result;
 };

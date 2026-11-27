@@ -411,27 +411,27 @@ const mockDeploymentLogs: DeploymentLog[] = [
   },
 ]
 
-const statusColors = {
+const _statusColors = {
   running: "bg-green-100 text-green-800",
   stopped: "bg-gray-100 text-gray-800",
   deploying: "bg-blue-100 text-blue-800",
   error: "bg-red-100 text-red-800",
 }
 
-const statusLabels = {
+const _statusLabels = {
   running: "运行中",
   stopped: "已停止",
   deploying: "部署中",
   error: "错误",
 }
 
-const typeColors = {
+const _typeColors = {
   development: "bg-blue-100 text-blue-800",
   staging: "bg-yellow-100 text-yellow-800",
   production: "bg-red-100 text-red-800",
 }
 
-const typeLabels = {
+const _typeLabels = {
   development: "开发",
   staging: "测试",
   production: "生产",
@@ -512,7 +512,7 @@ export function DevelopmentEnvironment() {
   }
 
   // 获取状态图标
-  const getStatusIcon = (status: string) => {
+  const _getStatusIcon = (status: string) => {
     switch (status) {
       case "running":
         return <Play className="w-4 h-4 text-green-600" />
@@ -758,7 +758,7 @@ export function DevelopmentEnvironment() {
   }
 
   // 格式化字节大小
-  const formatBytes = (bytes: number) => {
+  const _formatBytes = (bytes: number) => {
     if (bytes === 0) {return "0 B"}
     const k = 1024
     const sizes = ["B", "KB", "MB", "GB", "TB"]
@@ -820,11 +820,11 @@ export function DevelopmentEnvironment() {
     }, 3000)
   }
 
-  const handleStop = (envId: string) => {
+  const _handleStop = (envId: string) => {
     setEnvironments(environments.map((env) => (env.id === envId ? { ...env, status: "stopped" } : env)))
   }
 
-  const handleStart = (envId: string) => {
+  const _handleStart = (envId: string) => {
     setEnvironments(environments.map((env) => (env.id === envId ? { ...env, status: "running" } : env)))
   }
 

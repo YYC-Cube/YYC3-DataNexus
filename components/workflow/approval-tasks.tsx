@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {Avatar, AvatarFallback,} from "@/components/ui/avatar";
 import {
   Dialog,
   DialogContent,
@@ -41,28 +41,21 @@ import {
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
-import {
-  Clock,
+import {Clock,
   CheckCircle,
   XCircle,
   MessageSquare,
-  Filter,
   Search,
   Calendar,
   AlertTriangle,
   User,
   FileText,
   Eye,
-  ChevronRight,
   Timer,
-  Users,
-} from "lucide-react";
+  Users,} from "lucide-react";
 
-import {
-  WorkflowTask,
-  WorkflowComment,
-  WorkflowInstance,
-} from "@/types/workflow";
+import {WorkflowTask,
+  WorkflowComment,} from "@/types/workflow";
 
 export interface ApprovalTasksProps {
   userId?: string;

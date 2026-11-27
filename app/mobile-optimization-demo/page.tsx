@@ -22,8 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Heart,
+import {Heart,
   Share,
   Delete,
   Settings,
@@ -31,11 +30,9 @@ import {
   Home,
   Search,
   Bell,
-  Menu,
   Trash2,
   Star,
-  Download,
-} from "lucide-react";
+  Download,} from "lucide-react";
 
 export default function MobileOptimizationDemo() {
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
@@ -47,8 +44,8 @@ export default function MobileOptimizationDemo() {
     orientation,
     isTouch,
     safeArea,
-    isMobile,
-    isTablet,
+    isMobile: _isMobile,
+    isTablet: _isTablet,
     supportsVibration,
     supportsShare,
   } = useMobile();

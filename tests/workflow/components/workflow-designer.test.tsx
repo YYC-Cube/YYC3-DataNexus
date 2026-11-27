@@ -1,7 +1,7 @@
 // WorkflowDesigner 组件测试
 // 专注于验证核心功能
 
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {render, screen,} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 // ==================== Mock 配置 ====================

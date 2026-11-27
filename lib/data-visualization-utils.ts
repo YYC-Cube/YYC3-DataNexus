@@ -333,11 +333,12 @@ export class DataVisualizationUtils {
           case "number":
             item[field.name] = Math.floor(Math.random() * 1000);
             break;
-          case "date":
+          case "date": {
             const date = new Date();
             date.setDate(date.getDate() - Math.floor(Math.random() * 365));
             item[field.name] = date.toISOString().split("T")[0];
             break;
+          }
           case "boolean":
             item[field.name] = Math.random() > 0.5;
             break;

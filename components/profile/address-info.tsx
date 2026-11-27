@@ -63,7 +63,7 @@ export function AddressInfo() {
     },
   ])
 
-  const [isEditing, setIsEditing] = useState<string | null>(null)
+  const [_isEditing, setIsEditing] = useState<string | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [saveStatus, setSaveStatus] = useState<"idle" | "success" | "error">("idle")
   const [showAddForm, setShowAddForm] = useState(false)
@@ -135,7 +135,7 @@ export function AddressInfo() {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setSaveStatus("success")
       setTimeout(() => setSaveStatus("idle"), 3000)
-    } catch (error) {
+    } catch (_error) {
       setSaveStatus("error")
       setTimeout(() => setSaveStatus("idle"), 3000)
     } finally {

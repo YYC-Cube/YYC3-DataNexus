@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { OpenAIService } from "../openai.service"
 import OpenAI from "openai"
 import jest from "jest"

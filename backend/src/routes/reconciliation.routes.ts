@@ -159,7 +159,7 @@ router.patch('/exceptions/:id/resolve',
     const end = httpRequestDuration.startTimer();
     try {
       const { id } = req.params;
-      const { resolution, notes } = req.body || {};
+      const { resolution, notes: _notes } = req.body || {};
       const userId = (req.user as { userId: string })?.userId || 'system';
       
       const result = await reconciliationService.resolveException(id, resolution, userId);

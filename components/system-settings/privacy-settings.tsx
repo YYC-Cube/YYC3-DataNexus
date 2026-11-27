@@ -229,7 +229,7 @@ export function PrivacySettings() {
     return Math.round((1 - enabledCount / totalCount) * 100)
   }
 
-  const getConsentStatusColor = (status: ConsentRecord["status"]) => {
+  const _getConsentStatusColor = (status: ConsentRecord["status"]) => {
     switch (status) {
       case "active":
         return "text-green-600"

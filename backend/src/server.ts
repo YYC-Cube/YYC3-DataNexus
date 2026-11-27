@@ -210,7 +210,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // 错误处理中间件
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   logger.error('API Error', { error: err.message, stack: err.stack });
   res.status(500).json({
     error: 'Internal Server Error',

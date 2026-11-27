@@ -32,7 +32,7 @@ export function FinancialReconciliationEnhanced() {
   const ws: any = useWebSocket()
   const isConnected = ws?.isConnected
   const subscribe = ws?.subscribe || (() => {})
-  const sendMessage = ws?.sendMessage || (() => {})
+  const _sendMessage = ws?.sendMessage || (() => {})
 
   // 订阅 AI 分析事件
   useEffect(() => {
@@ -72,7 +72,7 @@ export function FinancialReconciliationEnhanced() {
   }
 
   // 上传文件并触发对账
-  const handleUpload = async (file: File) => {
+  const _handleUpload = async (file: File) => {
     try {
       const formData = new FormData()
       formData.append("file", file)

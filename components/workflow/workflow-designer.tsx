@@ -5,7 +5,7 @@
 
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, {useState, useCallback,} from "react";
 import ReactFlow, {
   addEdge,
   MiniMap,
@@ -42,8 +42,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import {
-  Play,
+import {Play,
   Square,
   GitBranch,
   CheckCircle,
@@ -53,17 +52,11 @@ import {
   Settings,
   Plus,
   Save,
-  Eye,
   Edit,
-  Trash2,
-} from "lucide-react";
+  Trash2,} from "lucide-react";
 
-import {
-  WorkflowDefinition,
-  WorkflowNode,
-  WorkflowEdge,
-  WorkflowVariable,
-} from "@/types/workflow";
+import {WorkflowDefinition,
+  WorkflowVariable,} from "@/types/workflow";
 
 // 自定义节点组件
 const CustomNode = ({ data, selected }: { data: any; selected: boolean }) => {
@@ -197,9 +190,6 @@ export function WorkflowDesigner({
   // 当前编辑的元素
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<Edge | null>(null);
-  const [editingVariable, setEditingVariable] =
-    useState<WorkflowVariable | null>(null);
-
   // 节点编辑表单状态
   const [nodeFormData, setNodeFormData] = useState({
     label: "",

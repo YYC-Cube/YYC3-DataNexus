@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useRef } from "react";
+import React, {useState, useRef} from "react";
 import {
   BarChart,
   Bar,
@@ -27,14 +27,11 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
 } from "recharts";
-import {
-  Card,
+import {Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  CardTitle,} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -44,12 +41,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  IconDownload,
-  IconExpand,
+import {IconDownload,
   IconFilter,
-  IconRefresh,
-} from "@/components/ui/icons";
+  IconRefresh,} from "@/components/ui/icons";
 
 // 图表类型定义
 export type ChartType =

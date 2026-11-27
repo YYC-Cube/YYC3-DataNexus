@@ -2,17 +2,6 @@
 
 import React from "react";
 import {
-  useI18n,
-  I18nText,
-  I18nButton,
-  I18nLabel,
-  I18nInput,
-} from "../../components/i18n/i18n-components";
-import {
-  I18nNavigationHeader,
-  I18nNavigationContainer,
-} from "../../components/i18n/i18n-navigation";
-import {
   Card,
   CardContent,
   CardHeader,

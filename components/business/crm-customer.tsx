@@ -108,7 +108,7 @@ const customerActivities = [
 ]
 
 export function CRMCustomer() {
-  const [customers, setCustomers] = useState<Customer[]>(mockCustomers)
+  const [customers, _setCustomers] = useState<Customer[]>(mockCustomers)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState<string>("all")
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null)

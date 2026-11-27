@@ -51,7 +51,7 @@ interface TrendData {
 }
 
 export function MainDashboard() {
-  const [stats, setStats] = useState<DashboardStats>({
+  const [stats, _setStats] = useState<DashboardStats>({
     totalUsers: 12847,
     totalTickets: 3247,
     totalContracts: 1567,
@@ -65,7 +65,7 @@ export function MainDashboard() {
     revenueGrowth: 23.4,
   })
 
-  const [alerts, setAlerts] = useState<Alert[]>([
+  const [alerts, _setAlerts] = useState<Alert[]>([
     {
       id: "alert-1",
       type: "error",
@@ -100,7 +100,7 @@ export function MainDashboard() {
     },
   ])
 
-  const [trendData, setTrendData] = useState<TrendData[]>([
+  const [trendData, _setTrendData] = useState<TrendData[]>([
     { date: "2024-01-01", tickets: 245, contracts: 89, revenue: 234000 },
     { date: "2024-01-02", tickets: 267, contracts: 92, revenue: 245000 },
     { date: "2024-01-03", tickets: 289, contracts: 95, revenue: 256000 },

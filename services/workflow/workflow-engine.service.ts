@@ -5,14 +5,12 @@
 
 import { EventEmitter } from "events";
 import { v4 as uuidv4 } from "uuid";
-import {
-  WorkflowDefinition,
+import {WorkflowDefinition,
   WorkflowInstance,
   WorkflowTask,
   WorkflowHistoryEntry,
   WorkflowComment,
   WorkflowNode,
-  WorkflowEdge,
   StartWorkflowRequest,
   CompleteTaskRequest,
   WorkflowError,
@@ -22,8 +20,7 @@ import {
   ConditionNodeConfig,
   TimerNodeConfig,
   WebhookNodeConfig,
-  ScriptNodeConfig,
-} from "../../types/workflow";
+  ScriptNodeConfig,} from "../../types/workflow";
 
 export class WorkflowEngineService extends EventEmitter {
   private workflows: Map<string, WorkflowDefinition> = new Map();
@@ -827,7 +824,7 @@ export class WorkflowEngineService extends EventEmitter {
    */
   private async makeHttpRequest(
     config: WebhookNodeConfig,
-    variables: Record<string, any>
+    _variables: Record<string, any>
   ): Promise<any> {
     // 这里应该实现实际的HTTP请求逻辑
     console.log("发送HTTP请求:", config.url, config.method);
@@ -839,7 +836,7 @@ export class WorkflowEngineService extends EventEmitter {
    */
   private async executeScript(
     config: ScriptNodeConfig,
-    variables: Record<string, any>
+    _variables: Record<string, any>
   ): Promise<any> {
     // 这里应该实现实际的脚本执行逻辑
     console.log("执行脚本:", config.language, config.script);

@@ -84,7 +84,7 @@ export function MobileDashboard() {
   const [selectedOrder, setSelectedOrder] = useState<MobileOrder | null>(null)
 
   // 模拟移动端数据
-  const [orders, setOrders] = useState<MobileOrder[]>([
+  const [orders, _setOrders] = useState<MobileOrder[]>([
     {
       id: "ORD-M-001",
       orderNumber: "ORD-M-001",

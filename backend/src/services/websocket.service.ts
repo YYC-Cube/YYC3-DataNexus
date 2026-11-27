@@ -2,8 +2,6 @@ import { Server as HttpServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import { redis } from '../config/redis';
 import { logger } from '../config/logger';
-import { AppError } from '../utils/app-error';
-import { ErrorCode } from '../constants/error-codes';
 
 interface ClientInfo {
   socket: Socket;
@@ -71,7 +69,7 @@ class WebSocketServiceClass {
       this.logger.error('Failed to initialize WebSocket service', { 
         error: error instanceof Error ? error.message : 'Unknown error' 
       });
-      throw new Error('Failed to initialize WebSocket service');
+      throw new Error('Failed to initialize WebSocket service', { cause: error });
     }
   }
 
@@ -79,7 +77,7 @@ class WebSocketServiceClass {
    * 设置WebSocket监听器
    */
   setupListeners(): void {
-    if (!this.io) return;
+    if (!this.io) {return;}
 
     // 连接事件
     this.io.on('connection', (socket) => {
@@ -163,7 +161,7 @@ class WebSocketServiceClass {
       let userId: string | null = null;
       try {
         userId = 'user_' + Math.random().toString(36).substring(2, 10);
-      } catch (error) {
+      } catch (_error) {
         socket.emit('auth_error', { message: 'Invalid or expired token' });
         this.logger.warn('WebSocket authentication failed', { socketId: socket.id });
         return;

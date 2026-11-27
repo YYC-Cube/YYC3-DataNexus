@@ -153,9 +153,9 @@ const mockAPIEndpoints: APIEndpoint[] = [
 
 export function PluginDeveloper() {
   const [plugins, setPlugins] = useState<DeveloperPlugin[]>(mockDeveloperPlugins)
-  const [apiEndpoints, setApiEndpoints] = useState<APIEndpoint[]>(mockAPIEndpoints)
+  const [apiEndpoints, _setApiEndpoints] = useState<APIEndpoint[]>(mockAPIEndpoints)
   const [showCreateDialog, setShowCreateDialog] = useState(false)
-  const [selectedPlugin, setSelectedPlugin] = useState<DeveloperPlugin | null>(null)
+  const [_selectedPlugin, _setSelectedPlugin] = useState<DeveloperPlugin | null>(null)
   const [newPlugin, setNewPlugin] = useState({
     name: "",
     description: "",

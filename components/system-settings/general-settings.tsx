@@ -61,7 +61,7 @@ export function GeneralSettings() {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setSaveStatus("success")
       setTimeout(() => setSaveStatus("idle"), 3000)
-    } catch (error) {
+    } catch (_error) {
       setSaveStatus("error")
       setTimeout(() => setSaveStatus("idle"), 3000)
     } finally {

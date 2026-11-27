@@ -82,7 +82,7 @@ export function CollaborationEngine() {
     },
   ])
 
-  const [syncStatus, setSyncStatus] = useState<"synced" | "syncing" | "conflict" | "offline">("synced")
+  const [syncStatus, _setSyncStatus] = useState<"synced" | "syncing" | "conflict" | "offline">("synced")
   const { playSound } = useSound()
 
   // 模拟实时协作状态更新
@@ -107,7 +107,7 @@ export function CollaborationEngine() {
   }, [])
 
   const handleConflictResolve = useCallback(
-    (conflictId: string, resolution: "accept" | "reject" | "merge") => {
+    (conflictId: string, _resolution: "accept" | "reject" | "merge") => {
       playSound("success")
       setConflicts((prev) =>
         prev.map((conflict) => (conflict.id === conflictId ? { ...conflict, status: "resolved" as const } : conflict)),

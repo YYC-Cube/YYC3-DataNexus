@@ -292,7 +292,7 @@ const integrationCategories: IntegrationCategory[] = [
 
 export function IntegrationHub() {
   const [integrations, setIntegrations] = useState<Integration[]>(mockIntegrations)
-  const [categories, setCategories] = useState<IntegrationCategory[]>(integrationCategories)
+  const [categories, _setCategories] = useState<IntegrationCategory[]>(integrationCategories)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedStatus, setSelectedStatus] = useState("all")

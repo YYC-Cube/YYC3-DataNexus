@@ -467,6 +467,6 @@ export function useNavigation() {
   return { activeMenu: "", setActiveMenu: (_menu: string) => {}, openMenus: [] as string[] }
 }
 
-export function MenuHighlight({ children, menuTitle, isActive, isParentActive }: { children: React.ReactNode; menuTitle?: string; isActive?: boolean; isParentActive?: boolean }) {
+export function MenuHighlight({ children, menuTitle: _menuTitle, isActive: _isActive, isParentActive: _isParentActive }: { children: React.ReactNode; menuTitle?: string; isActive?: boolean; isParentActive?: boolean }) {
   return <>{children}</>
 }

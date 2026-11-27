@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export function WebSocketNotifications() {
-  const { isConnected, notifications, clearNotifications, lastMessage } = useWebSocket({
+  const { isConnected, notifications, clearNotifications, lastMessage: _lastMessage } = useWebSocket({
     autoConnect: true,
     onConnected: () => {
       console.log("Notifications connected")

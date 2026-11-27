@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { TrendingUp, TrendingDown, BarChart3, PieChart, LineChart, Activity, Users, ShoppingCart, DollarSign, Eye, MousePointer, Clock, Target, Zap, Brain, Lightbulb, AlertTriangle, CheckCircle, ArrowUpRight, ArrowDownRight, RefreshCw, Download, Share2, Filter, Calendar, Settings } from 'lucide-react'
+import {useState,} from "react"
+import {TrendingUp, BarChart3, LineChart, Activity, Users, DollarSign, Target, Zap, Brain, Lightbulb, AlertTriangle, CheckCircle, ArrowUpRight, ArrowDownRight, RefreshCw,} from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {CardContent, CardHeader, CardTitle} from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -15,13 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
@@ -68,7 +61,7 @@ export function IntelligentAnalysis() {
   const { playSound } = useSound()
 
   // 核心指标数据
-  const [metrics, setMetrics] = useState<AnalysisMetric[]>([
+  const [metrics, _setMetrics] = useState<AnalysisMetric[]>([
     {
       id: "users",
       name: "活跃用户",
@@ -156,7 +149,7 @@ export function IntelligentAnalysis() {
   ])
 
   // 预测数据
-  const [predictions, setPredictions] = useState<PredictionData[]>([
+  const [predictions, _setPredictions] = useState<PredictionData[]>([
     {
       id: "1",
       metric: "月活跃用户",

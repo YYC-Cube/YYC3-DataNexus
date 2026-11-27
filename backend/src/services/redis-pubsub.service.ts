@@ -70,7 +70,7 @@ class RedisPubSubService extends EventEmitter {
       }
 
       // 创建新的订阅客户端
-      const subscriber = require('ioredis')({
+      const subscriber = new Redis({
         host: process.env.REDIS_HOST || "localhost",
         port: Number(process.env.REDIS_PORT) || 6379,
         password: process.env.REDIS_PASSWORD,
