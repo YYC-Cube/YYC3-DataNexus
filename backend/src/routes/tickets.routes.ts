@@ -1,7 +1,7 @@
 // 修复tickets.routes.ts文件中的TypeScript错误
 import express, { Request, Response, NextFunction } from 'express';
 import TicketService from '../services/ticket.service';
-const { validateRequest } = require('../middleware/validation.middleware');
+import { validateRequest } from '../middleware/validation.middleware';
 import { authenticate as authMiddleware, authorize as checkPermission } from '../middleware/auth.middleware';
 import { rateLimiter } from '../middleware/rate-limiter.middleware';
 import { circuitBreaker } from '../middleware/circuit-breaker.middleware';

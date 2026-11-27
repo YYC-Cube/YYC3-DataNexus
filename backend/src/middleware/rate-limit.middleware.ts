@@ -1,5 +1,4 @@
 import rateLimit from "express-rate-limit";
-import { Request, Response } from "express";
 
 // 通用速率限制
 export const generalRateLimit = rateLimit({

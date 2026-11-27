@@ -92,7 +92,7 @@ export function AvatarSettings() {
     }
   }
 
-  const simulateUpload = async (file: File) => {
+  const simulateUpload = async (_file: File) => {
     setIsUploading(true)
     setUploadStatus("uploading")
     setUploadProgress(0)
@@ -116,7 +116,7 @@ export function AvatarSettings() {
         setUploadStatus("idle")
         setPreviewImage(null)
       }, 3000)
-    } catch (error) {
+    } catch (_error) {
       setUploadStatus("error")
       setTimeout(() => setUploadStatus("idle"), 3000)
     } finally {

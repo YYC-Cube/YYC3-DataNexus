@@ -150,7 +150,7 @@ export function BusinessAnalysis() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {salesChannels.map((channel, index) => (
+                {salesChannels.map((channel, _index) => (
                   <div key={channel.name} className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">{channel.name}</span>
@@ -182,7 +182,7 @@ export function BusinessAnalysis() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {productCategories.map((category, index) => (
+                {productCategories.map((category, _index) => (
                   <div key={category.name} className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className={`w-3 h-3 rounded-full ${category.color}`}></div>

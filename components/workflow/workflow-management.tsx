@@ -17,7 +17,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Dialog,
   DialogContent,
@@ -36,35 +35,22 @@ import {
 import { toast } from "sonner";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
-import {
-  Plus,
+import {Plus,
   Search,
-  Filter,
   Play,
-  Pause,
   Eye,
   Edit,
-  Trash2,
-  BarChart3,
   Clock,
   CheckCircle,
-  XCircle,
-  Settings,
-  Users,
-  FileText,
   GitBranch,
-  Activity,
-} from "lucide-react";
+  Activity,} from "lucide-react";
 
 import { WorkflowDesigner } from "./workflow-designer";
 import { ApprovalTasks } from "./approval-tasks";
-import {
-  WorkflowDefinition,
+import {WorkflowDefinition,
   WorkflowInstance,
   WorkflowStatistics,
-  CreateWorkflowDefinitionRequest,
-  StartWorkflowRequest,
-} from "@/types/workflow";
+  StartWorkflowRequest,} from "@/types/workflow";
 
 interface WorkflowManagementProps {
   userId: string;

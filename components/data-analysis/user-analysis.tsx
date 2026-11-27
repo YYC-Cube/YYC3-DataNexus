@@ -141,7 +141,7 @@ export function UserAnalysis() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {deviceData.map((device, index) => (
+                {deviceData.map((device, _index) => (
                   <div key={device.name} className="flex items-center space-x-4">
                     <device.icon className="h-5 w-5 text-secondary-600" />
                     <div className="flex-1">
@@ -170,7 +170,7 @@ export function UserAnalysis() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {regionData.map((region, index) => (
+                {regionData.map((region, _index) => (
                   <div key={region.name} className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 rounded-full bg-primary-500"></div>

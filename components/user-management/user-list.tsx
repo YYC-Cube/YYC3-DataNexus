@@ -104,7 +104,7 @@ const mockUsers: User[] = [
 ]
 
 export function UserList() {
-  const [users, setUsers] = useState<User[]>(mockUsers)
+  const [users, _setUsers] = useState<User[]>(mockUsers)
   const [searchTerm, setSearchTerm] = useState("")
   const [filterRole, setFilterRole] = useState("all")
   const [filterStatus, setFilterStatus] = useState("all")

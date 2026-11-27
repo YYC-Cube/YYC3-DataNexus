@@ -9,7 +9,7 @@ import {
   useOrientation,
 } from "@/hooks/use-media-query";
 import { useSafeArea, useIsIOSSafari } from "@/hooks/use-safe-area";
-import { useIsMobile, useIsTablet, useDeviceType } from "@/hooks/use-mobile";
+import {useIsMobile, useDeviceType} from "@/hooks/use-mobile";
 
 // Mock window.matchMedia
 const mockMatchMedia = (matches: boolean = false) => {

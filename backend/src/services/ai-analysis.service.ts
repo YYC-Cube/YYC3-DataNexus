@@ -250,7 +250,7 @@ export class AiAnalysisService {
 
   private validateConfidence(confidence: unknown): number {
     const num = Number(confidence)
-    if (Number.isNaN(num)) return 50
+    if (Number.isNaN(num)) {return 50}
     return Math.max(0, Math.min(100, num))
   }
 
@@ -268,8 +268,8 @@ export class AiAnalysisService {
   }
 
   private getConfidenceLevel(confidence: number): string {
-    if (confidence >= 80) return "high"
-    if (confidence >= 60) return "medium"
+    if (confidence >= 80) {return "high"}
+    if (confidence >= 60) {return "medium"}
     return "low"
   }
 

@@ -268,9 +268,9 @@ const mockTasks: AITask[] = [
 
 export function AIDashboard() {
   const [models, setModels] = useState<AIModel[]>(mockModels)
-  const [tasks, setTasks] = useState<AITask[]>(mockTasks)
+  const [tasks, _setTasks] = useState<AITask[]>(mockTasks)
   const [showModelDialog, setShowModelDialog] = useState(false)
-  const [selectedModel, setSelectedModel] = useState<AIModel | null>(null)
+  const [_selectedModel, _setSelectedModel] = useState<AIModel | null>(null)
   const [systemMetrics, setSystemMetrics] = useState({
     totalCPU: 68,
     totalMemory: 72,

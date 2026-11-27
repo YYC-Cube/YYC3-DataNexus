@@ -311,9 +311,9 @@ const mockAlgorithms: MiningAlgorithm[] = [
 export function DataMining() {
   const [selectedTab, setSelectedTab] = useState("projects")
   const [projects, setProjects] = useState<DataMiningProject[]>(mockProjects)
-  const [dataSources, setDataSources] = useState<DataSource[]>(mockDataSources)
-  const [algorithms, setAlgorithms] = useState<MiningAlgorithm[]>(mockAlgorithms)
-  const [selectedProject, setSelectedProject] = useState<DataMiningProject | null>(null)
+  const [dataSources, _setDataSources] = useState<DataSource[]>(mockDataSources)
+  const [algorithms, _setAlgorithms] = useState<MiningAlgorithm[]>(mockAlgorithms)
+  const [_selectedProject, _setSelectedProject] = useState<DataMiningProject | null>(null)
   const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false)
   const { playSound } = useSound()
 
@@ -354,7 +354,7 @@ export function DataMining() {
     return <Badge className={config.className}>{config.label}</Badge>
   }
 
-  const getStatusIcon = (status: string) => {
+  const _getStatusIcon = (status: string) => {
     switch (status) {
       case "running":
         return <RefreshCw className="w-4 h-4 text-blue-600 animate-spin" />

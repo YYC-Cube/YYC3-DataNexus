@@ -37,7 +37,7 @@ export const jwtRefreshMiddleware = (
     }
 
     next();
-  } catch (error) {
+  } catch (_error) {
     // 令牌验证错误不中断请求，让后续中间件处理身份验证
     next();
   }

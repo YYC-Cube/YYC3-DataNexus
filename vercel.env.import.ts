@@ -26,7 +26,7 @@ rl.on('line', (line) => {
   const trimmed = line.trim();
 
   // 跳过注释或空行
-  if (!trimmed || trimmed.startsWith('#')) return;
+  if (!trimmed || trimmed.startsWith('#')) {return;}
 
   const [key, ...rest] = trimmed.split('=');
   const value = rest.join('=').trim();
@@ -41,7 +41,7 @@ rl.on('line', (line) => {
     // 数组参数形式 + stdin 传值：消除 shell 注入面（value 不再经过 shell 解释）
     execFileSync('vercel', ['env', 'add', key, TARGET_ENV], { input: value + '\n', stdio: ['pipe', 'inherit', 'inherit'] });
     console.log(`✅ 成功导入：${key}`);
-  } catch (error) {
+  } catch (_error) {
     console.error(`❌ 导入失败：${key}`);
   }
 });

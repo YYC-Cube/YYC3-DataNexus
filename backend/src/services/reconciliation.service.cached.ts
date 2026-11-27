@@ -119,7 +119,7 @@ export class CachedReconciliationService extends ReconciliationService {
   async updateRecord(
     recordId: string,
     updates: Partial<Pick<ReconciliationRecord, "status" | "notes">>,
-    userId: string,
+    _userId: string,
   ): Promise<ReconciliationRecord | null> {
     const record = await this.getRecordById(recordId)
     if (!record) {
@@ -326,7 +326,7 @@ export class CachedReconciliationService extends ReconciliationService {
   async resolveException(
     exceptionId: string,
     resolutionNotes: string,
-    userId: string,
+    _userId: string,
   ): Promise<ReconciliationException | null> {
     const query = `
       UPDATE reconciliation_exceptions
@@ -517,7 +517,7 @@ export class CachedReconciliationService extends ReconciliationService {
     for (const rule of rules) {
       if (rule.ruleType === "amount_match") {
         const match = await this.findAmountMatch(record, rule.amountTolerance)
-        if (match) return match
+        if (match) {return match}
       }
     }
     return null

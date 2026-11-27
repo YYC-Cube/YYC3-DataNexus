@@ -261,14 +261,14 @@ const mockAPIKeys: APIKey[] = [
 ]
 
 export function APIGateway() {
-  const [endpoints, setEndpoints] = useState<APIEndpoint[]>(mockEndpoints)
-  const [apiKeys, setApiKeys] = useState<APIKey[]>(mockAPIKeys)
+  const [endpoints, _setEndpoints] = useState<APIEndpoint[]>(mockEndpoints)
+  const [apiKeys, _setApiKeys] = useState<APIKey[]>(mockAPIKeys)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [selectedMethod, setSelectedMethod] = useState("all")
   const [showCreateEndpoint, setShowCreateEndpoint] = useState(false)
   const [showCreateKey, setShowCreateKey] = useState(false)
-  const [selectedEndpoint, setSelectedEndpoint] = useState<APIEndpoint | null>(null)
+  const [_selectedEndpoint, _setSelectedEndpoint] = useState<APIEndpoint | null>(null)
 
   const filteredEndpoints = endpoints.filter((endpoint) => {
     const matchesSearch =

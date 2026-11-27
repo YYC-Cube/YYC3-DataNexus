@@ -75,7 +75,7 @@ export function FinancialReconciliation() {
   const [dateRange, setDateRange] = useState({ start: "", end: "" })
   const [isLoading, setIsLoading] = useState(false)
   const [selectedRecord, setSelectedRecord] = useState<ReconciliationRecord | null>(null)
-  const [showAddDialog, setShowAddDialog] = useState(false)
+  const [_showAddDialog, _setShowAddDialog] = useState(false)
 
   const [reconciliationSummary] = useState<ReconciliationSummary>({
     totalRecords: 1247,
@@ -165,7 +165,7 @@ export function FinancialReconciliation() {
     },
   ])
 
-  const [invoices] = useState<InvoiceData[]>([
+  const [_invoices] = useState<InvoiceData[]>([
     {
       id: "INV-2024-0156",
       invoiceNumber: "INV-2024-0156",

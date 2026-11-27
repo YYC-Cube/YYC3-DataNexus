@@ -24,14 +24,14 @@ const STORAGE_KEY = "yyc3-theme"
 const DEFAULT_THEME: Theme = "light"
 
 function getSystemTheme(): ResolvedTheme {
-  if (typeof window === "undefined") return "light"
+  if (typeof window === "undefined") {return "light"}
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light"
 }
 
 function getStoredTheme(): Theme | null {
-  if (typeof window === "undefined") return null
+  if (typeof window === "undefined") {return null}
   try {
     return localStorage.getItem(STORAGE_KEY) as Theme | null
   } catch {
@@ -64,17 +64,18 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(DEFAULT_THEME)
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light")
-  const [mounted, setMounted] = useState(false)
+  const [_mounted, setMounted] = useState(false)
 
   const applyTheme = useCallback(
     (newTheme: ResolvedTheme) => {
-      if (typeof document === "undefined") return
+      if (typeof document === "undefined") {return}
 
       const root = document.documentElement
 
       if (disableTransitionOnChange) {
         root.style.setProperty("transition", "none")
-        root.offsetHeight
+        // 强制 reflow 以刷新过渡样式（经典 DOM 技巧，非无效表达式）
+        void root.offsetHeight
       }
 
       root.setAttribute(attribute, newTheme)
@@ -127,7 +128,7 @@ export function ThemeProvider({
   }, [])
 
   useEffect(() => {
-    if (!enableSystem || theme !== "system") return
+    if (!enableSystem || theme !== "system") {return}
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
 

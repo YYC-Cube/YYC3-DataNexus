@@ -262,7 +262,7 @@ const availableEvents = [
 
 export function WebhookManager() {
   const [webhooks, setWebhooks] = useState<WebhookEndpoint[]>(mockWebhooks)
-  const [deliveries, setDeliveries] = useState<WebhookDelivery[]>(mockDeliveries)
+  const [deliveries, _setDeliveries] = useState<WebhookDelivery[]>(mockDeliveries)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [showCreateDialog, setShowCreateDialog] = useState(false)

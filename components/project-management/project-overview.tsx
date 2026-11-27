@@ -43,7 +43,7 @@ interface Project {
 }
 
 export function ProjectOverview() {
-  const [projects, setProjects] = useState<Project[]>([
+  const [projects, _setProjects] = useState<Project[]>([
     {
       id: "1",
       name: "云系统管理平台",
@@ -195,9 +195,10 @@ export function ProjectOverview() {
         return a.name.localeCompare(b.name)
       case "progress":
         return b.progress - a.progress
-      case "priority":
+      case "priority": {
         const priorityOrder = { critical: 4, high: 3, medium: 2, low: 1 }
         return priorityOrder[b.priority] - priorityOrder[a.priority]
+      }
       case "lastActivity":
       default:
         return new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime()

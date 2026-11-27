@@ -1,8 +1,7 @@
-const request = require("supertest");
-
+import request from "supertest";
+import express from "express";
 
 // 模拟Express应用
-const express = require("express");
 const app = express();
 
 app.use(express.json());

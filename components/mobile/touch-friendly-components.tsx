@@ -326,7 +326,7 @@ export function DraggableListItem({
       onDragEnd={(event, info) => {
         setIsDragging(false);
         if (onDragEnd) {
-          const draggedElement = event.target as HTMLElement;
+          const _draggedElement = event.target as HTMLElement;
           const targetElement = document.elementFromPoint(
             info.point.x,
             info.point.y

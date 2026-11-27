@@ -69,6 +69,7 @@ export interface PivotTableProps<T> {
 }
 
 declare module "@tanstack/react-table" {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- declare module 扩充要求与上游类型参数同名，不可加 _ 前缀
   interface ColumnMeta<TData extends RowData, TValue> {
     isNumeric?: boolean;
   }
@@ -81,7 +82,7 @@ export function PivotTable<T>({
   description,
   loading = false,
   onExport,
-  onSettingsChange,
+  onSettingsChange: _onSettingsChange,
   className = "",
 }: PivotTableProps<T>) {
   // 表格状态

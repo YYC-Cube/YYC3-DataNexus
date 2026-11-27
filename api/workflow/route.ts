@@ -569,7 +569,7 @@ export async function getMyTasks(request: NextRequest): Promise<NextResponse> {
  * GET /api/workflow/statistics
  */
 export async function getWorkflowStatistics(
-  request: NextRequest
+  _request: NextRequest
 ): Promise<NextResponse> {
   try {
     const workflows = await workflowEngine.listWorkflowDefinitions();

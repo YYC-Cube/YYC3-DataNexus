@@ -107,7 +107,7 @@ interface KnowledgeCategory {
   parentCategory?: string
 }
 
-interface KnowledgeGraph {
+interface _KnowledgeGraph {
   nodes: Array<{
     id: string
     title: string
@@ -325,7 +325,7 @@ const mockCategories: KnowledgeCategory[] = [
 export function KnowledgeBase() {
   const [selectedTab, setSelectedTab] = useState("browse")
   const [knowledgeItems, setKnowledgeItems] = useState<KnowledgeItem[]>(mockKnowledgeItems)
-  const [categories, setCategories] = useState<KnowledgeCategory[]>(mockCategories)
+  const [categories, _setCategories] = useState<KnowledgeCategory[]>(mockCategories)
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
     query: "",
     type: "all",
@@ -338,7 +338,7 @@ export function KnowledgeBase() {
   })
   const [selectedItem, setSelectedItem] = useState<KnowledgeItem | null>(null)
   const [isCreateItemOpen, setIsCreateItemOpen] = useState(false)
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  const [viewMode, _setViewMode] = useState<"grid" | "list">("grid")
   const { playSound } = useSound()
 
   // 过滤知识项目

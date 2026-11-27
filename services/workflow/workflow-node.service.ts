@@ -58,14 +58,14 @@ class WorkflowNodeService {
   /**
    * 删除节点
    */
-  async deleteNode(nodeId: string): Promise<void> {
+  async deleteNode(_nodeId: string): Promise<void> {
     // 删除节点逻辑
   }
 
   /**
    * 根据工作流ID获取所有节点
    */
-  async getNodesByWorkflowId(workflowId: string): Promise<WorkflowNode[]> {
+  async getNodesByWorkflowId(_workflowId: string): Promise<WorkflowNode[]> {
     // 返回工作流的所有节点
     return [];
   }
@@ -73,7 +73,7 @@ class WorkflowNodeService {
   /**
    * 根据节点ID获取节点
    */
-  private async getNodeById(nodeId: string): Promise<WorkflowNode | null> {
+  private async getNodeById(_nodeId: string): Promise<WorkflowNode | null> {
     // 获取单个节点
     return null;
   }

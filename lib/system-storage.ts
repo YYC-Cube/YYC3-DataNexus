@@ -17,7 +17,7 @@ export function createSystemStorage(systemId: string): SystemStorage {
     get<T>(key: string, fallback?: T): T | undefined {
       try {
         const raw = localStorage.getItem(prefix + key);
-        if (raw === null) return fallback;
+        if (raw === null) {return fallback;}
         return JSON.parse(raw) as T;
       } catch {
         return fallback;

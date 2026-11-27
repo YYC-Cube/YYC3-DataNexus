@@ -212,9 +212,9 @@ const mockTeamMembers: TeamMember[] = [
 
 export function DevelopmentExecution() {
   const [selectedTab, setSelectedTab] = useState("overview")
-  const [tasks, setTasks] = useState<Task[]>(mockTasks)
-  const [milestones, setMilestones] = useState<Milestone[]>(mockMilestones)
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(mockTeamMembers)
+  const [tasks, _setTasks] = useState<Task[]>(mockTasks)
+  const [milestones, _setMilestones] = useState<Milestone[]>(mockMilestones)
+  const [teamMembers, _setTeamMembers] = useState<TeamMember[]>(mockTeamMembers)
 
   // 计算项目统计数据
   const projectStats = {

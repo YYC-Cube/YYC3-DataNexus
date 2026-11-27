@@ -1,5 +1,7 @@
 import type { StorybookConfig } from "@storybook/nextjs"
 import path from "path"
+import tailwindcss from "tailwindcss"
+import autoprefixer from "autoprefixer"
 
 const config: StorybookConfig = {
   stories: ["../components/**/*.stories.@(js|jsx|mjs|ts|tsx)", "../components/**/*.mdx"],
@@ -28,7 +30,7 @@ const config: StorybookConfig = {
                 loader: "postcss-loader",
                 options: {
                   postcssOptions: {
-                    plugins: [require("tailwindcss"), require("autoprefixer")],
+                    plugins: [tailwindcss, autoprefixer],
                   },
                 },
               },

@@ -13,7 +13,7 @@ export class EventBus {
   }
 
   on(event: string, fn: Handler): () => void {
-    if (!this.listeners.has(event)) this.listeners.set(event, new Set());
+    if (!this.listeners.has(event)) {this.listeners.set(event, new Set());}
     this.listeners.get(event)!.add(fn);
     return () => {
       this.listeners.get(event)?.delete(fn);
@@ -33,8 +33,8 @@ export class EventBus {
   }
 
   clear(event?: string): void {
-    if (event) this.listeners.delete(event);
-    else this.listeners.clear();
+    if (event) {this.listeners.delete(event);}
+    else {this.listeners.clear();}
   }
 }
 

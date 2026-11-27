@@ -98,8 +98,8 @@ const mockMetrics: SystemMetric[] = [
 ]
 
 export function DynamicDataCenter() {
-  const [dataSources, setDataSources] = useState<DataSource[]>(mockDataSources)
-  const [metrics, setMetrics] = useState<SystemMetric[]>(mockMetrics)
+  const [dataSources, _setDataSources] = useState<DataSource[]>(mockDataSources)
+  const [metrics, _setMetrics] = useState<SystemMetric[]>(mockMetrics)
 
   const getStatusBadge = (status: DataSource["status"]) => {
     switch (status) {

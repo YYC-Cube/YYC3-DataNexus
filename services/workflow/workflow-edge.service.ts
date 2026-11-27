@@ -40,14 +40,14 @@ class WorkflowEdgeService {
   /**
    * 删除边
    */
-  async deleteEdge(edgeId: string): Promise<void> {
+  async deleteEdge(_edgeId: string): Promise<void> {
     // 删除边逻辑
   }
 
   /**
    * 根据工作流ID获取所有边
    */
-  async getEdgesByWorkflowId(workflowId: string): Promise<WorkflowEdge[]> {
+  async getEdgesByWorkflowId(_workflowId: string): Promise<WorkflowEdge[]> {
     // 返回工作流的所有边
     return [];
   }

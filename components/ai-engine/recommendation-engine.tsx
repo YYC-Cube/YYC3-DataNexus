@@ -1,12 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Target, Users, ShoppingCart, TrendingUp, Star, Heart, Eye, MousePointer, Clock, Filter, Zap, Brain, Sparkles, ArrowRight, ThumbsUp, ThumbsDown, RefreshCw, Settings, Download, Share2, BookOpen, Tag, Gift, MessageSquare, Calendar, MapPin } from 'lucide-react'
+import {useState,} from "react"
+import {Target, Users, ShoppingCart, Clock, Zap, Brain, Sparkles, ThumbsUp, ThumbsDown, RefreshCw, Settings, Download, BookOpen, MessageSquare,} from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {CardContent, CardHeader, CardTitle} from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -21,7 +20,7 @@ import { Slider } from "@/components/ui/slider"
 
 import { EnhancedCard } from "../design-system/enhanced-card-system"
 import { EnhancedButton } from "../design-system/enhanced-button-system"
-import { AnimatedContainer, FloatingElement } from "../design-system/animation-system"
+import {AnimatedContainer,} from "../design-system/animation-system"
 import { useSound } from "../design-system/sound-system"
 
 // 推荐类型定义

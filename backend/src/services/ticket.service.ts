@@ -1,6 +1,6 @@
 import { pool } from '../config/database';
 import { logger } from '../config/logger';
-import type { Ticket, TicketMessage, TicketStats, TicketAttachment, TicketFilters } from '../types/ticket';
+import type {Ticket, TicketMessage, TicketAttachment,} from '../types/ticket';
 
 interface TicketServiceFilters {
   status?: string | string[];
@@ -616,7 +616,7 @@ export default class TicketService {
    * @param {Array} [messages=[]] - 消息列表
    * @returns {Object} 模型对象
    */
-  mapDbTicketToModel(row: DbRow, messages: TicketMessage[] = []): Ticket {
+  mapDbTicketToModel(row: DbRow, _messages: TicketMessage[] = []): Ticket {
     return {
       id: row.id as string,
       ticketNumber: row.ticket_number as string,

@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import path from 'path';
 import { logger } from './logger';
 
 // 加载环境变量

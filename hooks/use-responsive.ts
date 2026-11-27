@@ -63,7 +63,7 @@ export function useResponsive(): ResponsiveState {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  let breakpoint: Breakpoint = "xs"
+  let breakpoint: Breakpoint
   if (is2xl) {breakpoint = "2xl"}
   else if (isXl) {breakpoint = "xl"}
   else if (isLg) {breakpoint = "lg"}

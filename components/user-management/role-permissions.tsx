@@ -78,7 +78,7 @@ export function RolePermissions() {
   const [deviceView, setDeviceView] = useState<"desktop" | "tablet" | "mobile">("desktop")
   const [showRiskAnalysis, setShowRiskAnalysis] = useState(false)
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
-  const [selectedPermissions, setSelectedPermissions] = useState<string[]>([])
+  const [_selectedPermissions, setSelectedPermissions] = useState<string[]>([])
   const { playSound } = useSound()
 
   const roles: Role[] = [

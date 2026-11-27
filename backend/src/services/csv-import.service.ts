@@ -214,7 +214,7 @@ export class CsvImportService {
   private async processRecords(
     csvRecords: CsvRecord[],
     userId: string,
-    batchId: string,
+    _batchId: string,
   ): Promise<{
     processed: number
     matched: number

@@ -41,7 +41,7 @@ export class I18nEngine {
 
   t(key: string, params?: Record<string, string | number>): string {
     const template = this.resolve(key) ?? key;
-    if (!params) return template;
+    if (!params) {return template;}
     return template.replace(/\{(\w+)\}/g, (_, name: string) =>
       String(params[name] ?? `{${name}}`)
     );
@@ -57,10 +57,10 @@ export class I18nEngine {
 
   private lookup(locale: Locale, parts: string[]): string | undefined {
     const map = this.translations.get(locale);
-    if (!map) return undefined;
+    if (!map) {return undefined;}
     let current: unknown = map;
     for (const part of parts) {
-      if (typeof current !== "object" || current === null) return undefined;
+      if (typeof current !== "object" || current === null) {return undefined;}
       current = (current as Record<string, unknown>)[part];
     }
     return typeof current === "string" ? current : undefined;

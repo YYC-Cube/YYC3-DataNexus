@@ -390,10 +390,10 @@ const mockTrainingJobs: TrainingJob[] = [
 export function MachineLearning() {
   const [selectedTab, setSelectedTab] = useState("models")
   const [models, setModels] = useState<MLModel[]>(mockModels)
-  const [datasets, setDatasets] = useState<Dataset[]>(mockDatasets)
-  const [experiments, setExperiments] = useState<Experiment[]>(mockExperiments)
+  const [datasets, _setDatasets] = useState<Dataset[]>(mockDatasets)
+  const [experiments, _setExperiments] = useState<Experiment[]>(mockExperiments)
   const [trainingJobs, setTrainingJobs] = useState<TrainingJob[]>(mockTrainingJobs)
-  const [selectedModel, setSelectedModel] = useState<MLModel | null>(null)
+  const [_selectedModel, _setSelectedModel] = useState<MLModel | null>(null)
   const [isCreateModelOpen, setIsCreateModelOpen] = useState(false)
   const { playSound } = useSound()
 

@@ -151,7 +151,7 @@ export function CICDDashboard() {
     },
   ])
 
-  const [environments, setEnvironments] = useState<DeploymentEnvironment[]>([
+  const [environments, _setEnvironments] = useState<DeploymentEnvironment[]>([
     {
       name: "生产环境",
       status: "healthy",
@@ -181,7 +181,7 @@ export function CICDDashboard() {
     },
   ])
 
-  const [testResults, setTestResults] = useState<TestResult[]>([
+  const [testResults, _setTestResults] = useState<TestResult[]>([
     { type: "unit", total: 245, passed: 238, failed: 7, coverage: 87.5, duration: "5分钟" },
     { type: "integration", total: 56, passed: 54, failed: 2, coverage: 78.2, duration: "8分钟" },
     { type: "e2e", total: 28, passed: 26, failed: 2, coverage: 65.8, duration: "12分钟" },
@@ -216,7 +216,7 @@ export function CICDDashboard() {
     console.log(`Deploying to ${environment}`)
   }
 
-  const getStatusColor = (status: string) => {
+  const _getStatusColor = (status: string) => {
     switch (status) {
       case "success":
       case "healthy":

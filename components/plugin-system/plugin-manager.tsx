@@ -199,7 +199,7 @@ const mockStats: PluginStats = {
 
 export function PluginManager() {
   const [plugins, setPlugins] = useState<Plugin[]>(mockPlugins)
-  const [stats, setStats] = useState<PluginStats>(mockStats)
+  const [stats, _setStats] = useState<PluginStats>(mockStats)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedPlugin, setSelectedPlugin] = useState<Plugin | null>(null)

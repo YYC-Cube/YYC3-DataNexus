@@ -51,7 +51,7 @@ interface AIAnalysisDisplayProps {
 }
 
 export function AIAnalysisDisplay({
-  reconciliationId,
+  reconciliationId: _reconciliationId,
   results,
   summary,
   isAnalyzing = false,

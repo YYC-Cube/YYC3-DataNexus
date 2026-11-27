@@ -26,7 +26,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye, Play, Pause, Square, Filter } from "lucide-react";
+import {Eye, Play, Pause, Square,} from "lucide-react";
 import { WorkflowInstance, WorkflowStatus } from "@/types/workflow";
 
 // 状态映射常量

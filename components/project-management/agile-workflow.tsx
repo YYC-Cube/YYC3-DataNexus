@@ -256,15 +256,15 @@ const mockRetrospectives: SprintRetrospective[] = [
 export function AgileWorkflow() {
   const [selectedTab, setSelectedTab] = useState("sprint")
   const [userStories, setUserStories] = useState<UserStory[]>(mockUserStories)
-  const [sprints, setSprints] = useState<Sprint[]>(mockSprints)
-  const [epics, setEpics] = useState<Epic[]>(mockEpics)
-  const [retrospectives, setRetrospectives] = useState<SprintRetrospective[]>(mockRetrospectives)
+  const [sprints, _setSprints] = useState<Sprint[]>(mockSprints)
+  const [epics, _setEpics] = useState<Epic[]>(mockEpics)
+  const [retrospectives, _setRetrospectives] = useState<SprintRetrospective[]>(mockRetrospectives)
 
   const currentSprint = sprints.find((s) => s.status === "active")
   const sprintProgress = currentSprint ? Math.round((currentSprint.completed / currentSprint.committed) * 100) : 0
 
   // 计算燃尽图数据
-  const burndownData = currentSprint
+  const _burndownData = currentSprint
     ? [
         { day: 1, remaining: currentSprint.committed, ideal: currentSprint.committed },
         { day: 2, remaining: currentSprint.committed - 2, ideal: currentSprint.committed * 0.9 },

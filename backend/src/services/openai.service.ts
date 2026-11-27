@@ -123,14 +123,14 @@ export class OpenAIService {
       })
 
       if (err.status === 429) {
-        throw new Error("OpenAI rate limit exceeded. Please try again later.")
+        throw new Error("OpenAI rate limit exceeded. Please try again later.", { cause: error })
       }
 
       if (err.status === 401) {
-        throw new Error("Invalid OpenAI API key.")
+        throw new Error("Invalid OpenAI API key.", { cause: error })
       }
 
-      throw new Error(`OpenAI API error: ${err.message}`)
+      throw new Error(`OpenAI API error: ${err.message}`, { cause: error })
     }
   }
 

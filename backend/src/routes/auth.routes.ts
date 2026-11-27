@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
 import { authService } from '../services/auth.service';
-import { authenticate, authorize } from '../middleware/auth.middleware';
+import {authenticate,} from '../middleware/auth.middleware';
 import { logger } from '../config/logger';
 import { AppError } from '../utils/app-error';
 import { ErrorCode } from '../constants/error-codes';
