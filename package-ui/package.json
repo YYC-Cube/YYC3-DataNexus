@@ -70,12 +70,12 @@
     "lucide-react": "^0.303.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
+    "@types/react": "^19.3.2",
+    "@types/react-dom": "^19.3.0",
     "typescript": "^5.3.3",
     "tsup": "^8.0.1",
     "vitest": "^1.1.0",
-    "@vitejs/plugin-react": "^4.2.1"
+    "@vitejs/plugin-react": "^6.3.0"
   },
   "keywords": ["react", "components", "ui", "yanyu-cloud", "design-system"],
   "author": "YanYu Cloud Team",
