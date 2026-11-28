@@ -1,0 +1,27 @@
+# YYC³ DataNexus — Dependabot 分组配置（T1 恒久减负）
+# 策略：patch/minor 归组周更，绿测自动合并（dependabot-auto-merge.yml）；
+#       major 保持单独 PR 认真评审。
+# 目录口径：仅含真实存在 package.json 的 workspace 成员
+#（backend / design-system / package-ui / scripts，见 pnpm-workspace.yaml）。
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/backend"
+      - "/design-system"
+      - "/package-ui"
+      - "/scripts"
+    schedule:
+      interval: "weekly"
+    groups:
+      patch-and-minor:
+        update-types: ["patch", "minor"]
+  # GitHub Actions 版本更新（ci-cd.yml / test-gate.yml / chromatic.yml）
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      patch-and-minor:
+        update-types: ["patch", "minor"]
